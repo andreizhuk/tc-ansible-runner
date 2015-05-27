@@ -1,0 +1,9 @@
+.classpath
+.project
+.pydevproject
+.settings/
+.idea/
+target/
+*.iml
+*.releaseBackup
+release.properties
