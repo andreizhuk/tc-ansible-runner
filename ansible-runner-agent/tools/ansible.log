@@ -1,0 +1,731 @@
+2015-05-21 09:38:42,336 p=10345 u=eproot |   
+2015-05-21 09:38:42,336 p=10345 u=eproot |  /usr/bin/ansible-playbook site.yml -i inventory/dgc-teamcity/hosts -k -K
+2015-05-21 09:38:42,336 p=10345 u=eproot |   
+2015-05-21 09:38:51,790 p=10345 u=eproot |  PLAY [teamcity-db] ************************************************************ 
+2015-05-21 09:38:51,791 p=10345 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 09:38:52,617 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:52,618 p=10345 u=eproot |  TASK: [postgres-tc-install | add postgresql apt repo] ************************* 
+2015-05-21 09:38:52,832 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:52,833 p=10345 u=eproot |  TASK: [postgres-tc-install | add postgresql apt repo key] ********************* 
+2015-05-21 09:38:53,439 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:53,440 p=10345 u=eproot |  TASK: [postgres-tc-install | install system locale] *************************** 
+2015-05-21 09:38:53,572 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:53,573 p=10345 u=eproot |  TASK: [postgres-tc-install | install psycopg2] ******************************** 
+2015-05-21 09:38:54,280 p=10345 u=eproot |  ok: [bld01] => (item=python-psycopg2)
+2015-05-21 09:38:54,281 p=10345 u=eproot |  TASK: [postgres-tc-install | install postgres] ******************************** 
+2015-05-21 09:38:54,969 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:54,970 p=10345 u=eproot |  TASK: [postgres-tc-install | set postgres data dir fact] ********************** 
+2015-05-21 09:38:54,982 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:54,982 p=10345 u=eproot |  TASK: [postgres-tc-install | drop cluster 'main'] ***************************** 
+2015-05-21 09:38:55,116 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:55,116 p=10345 u=eproot |  TASK: [postgres-tc-install | create cluster] ********************************** 
+2015-05-21 09:38:55,251 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:55,251 p=10345 u=eproot |  TASK: [postgres-tc-install | configure postgres] ****************************** 
+2015-05-21 09:38:55,450 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:55,451 p=10345 u=eproot |  TASK: [postgres-tc-install | ensure postresql is running] ********************* 
+2015-05-21 09:38:55,663 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:55,663 p=10345 u=eproot |  TASK: [postgres-tc-install | create db user] ********************************** 
+2015-05-21 09:38:55,851 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:55,851 p=10345 u=eproot |  TASK: [postgres-tc-install | create db] *************************************** 
+2015-05-21 09:38:56,053 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:56,054 p=10345 u=eproot |  TASK: [postgres-tc-install | configure teamcity user access] ****************** 
+2015-05-21 09:38:56,189 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:56,190 p=10345 u=eproot |  TASK: [postgres-tc-install | set owner privileges] **************************** 
+2015-05-21 09:38:56,377 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:56,378 p=10345 u=eproot |  PLAY [teamcity-server] ******************************************************** 
+2015-05-21 09:38:56,379 p=10345 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 09:38:56,856 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:56,858 p=10345 u=eproot |  TASK: [openjdk-7-jdk-install | Install Java] ********************************** 
+2015-05-21 09:38:57,563 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:57,563 p=10345 u=eproot |  TASK: [openjdk-7-jdk-install | Set JAVA_HOME and PATH] ************************ 
+2015-05-21 09:38:57,753 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:57,754 p=10345 u=eproot |  TASK: [tc-server-install | Create TeamCity group] ***************************** 
+2015-05-21 09:38:57,887 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:57,887 p=10345 u=eproot |  TASK: [tc-server-install | Create TeamCity user] ****************************** 
+2015-05-21 09:38:58,036 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:58,037 p=10345 u=eproot |  TASK: [tc-server-install | Set TeamCity home permissions] ********************* 
+2015-05-21 09:38:58,171 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:58,172 p=10345 u=eproot |  TASK: [tc-server-install | Create .ssh directory] ***************************** 
+2015-05-21 09:38:58,305 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:58,306 p=10345 u=eproot |  TASK: [tc-server-install | Generate SSH key for TeamCity] ********************* 
+2015-05-21 09:38:58,474 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:58,475 p=10345 u=eproot |  TASK: [tc-server-install | Set SSH configuration] ***************************** 
+2015-05-21 09:38:58,662 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:58,663 p=10345 u=eproot |  TASK: [tc-server-install | Add bitbucket.org to known hosts] ****************** 
+2015-05-21 09:38:58,801 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:58,802 p=10345 u=eproot |  TASK: [tc-server-install | Ensure downloads dir exists] *********************** 
+2015-05-21 09:38:58,936 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:58,936 p=10345 u=eproot |  TASK: [tc-server-install | Download TeamCity] ********************************* 
+2015-05-21 09:38:59,087 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:59,088 p=10345 u=eproot |  TASK: [tc-server-install | Unarchive TeamCity] ******************************** 
+2015-05-21 09:38:59,223 p=10345 u=eproot |  skipping: [bld01]
+2015-05-21 09:38:59,223 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:59,223 p=10345 u=eproot |  TASK: [tc-server-install | Fix ownership of TeamCity installation] ************ 
+2015-05-21 09:38:59,673 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:38:59,673 p=10345 u=eproot |  TASK: [tc-server-install | Configure Teamcity startup options] **************** 
+2015-05-21 09:38:59,867 p=10345 u=eproot |  ok: [bld01] => (item=setenv.sh)
+2015-05-21 09:39:00,050 p=10345 u=eproot |  ok: [bld01] => (item=teamcity-init.sh)
+2015-05-21 09:39:00,051 p=10345 u=eproot |  TASK: [tc-server-install | Create TeamCity logs dir] ************************** 
+2015-05-21 09:39:00,186 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:00,186 p=10345 u=eproot |  TASK: [tc-server-install | Create TeamCity data dirs] ************************* 
+2015-05-21 09:39:00,351 p=10345 u=eproot |  ok: [bld01] => (item=.BuildServer)
+2015-05-21 09:39:00,500 p=10345 u=eproot |  ok: [bld01] => (item=.BuildServer/config)
+2015-05-21 09:39:00,632 p=10345 u=eproot |  ok: [bld01] => (item=.BuildServer/lib/jdbc)
+2015-05-21 09:39:00,633 p=10345 u=eproot |  TASK: [tc-server-install | Download PostgreSQL JDBC drivers] ****************** 
+2015-05-21 09:39:00,785 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:00,786 p=10345 u=eproot |  TASK: [tc-server-install | Configure DB access] ******************************* 
+2015-05-21 09:39:00,997 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:00,998 p=10345 u=eproot |  TASK: [tc-server-install | Install TeamCity service script] ******************* 
+2015-05-21 09:39:01,196 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:01,197 p=10345 u=eproot |  TASK: [tc-server-install | Enable TeamCity service] *************************** 
+2015-05-21 09:39:01,367 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:01,368 p=10345 u=eproot |  TASK: [tc-server-install | Start TeamCity service] **************************** 
+2015-05-21 09:39:01,534 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:01,535 p=10345 u=eproot |  PLAY [teamcity-agents] ******************************************************** 
+2015-05-21 09:39:01,536 p=10345 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 09:39:02,093 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:05,368 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:05,377 p=10345 u=eproot |  TASK: [openjdk-7-jdk-install | Install Java] ********************************** 
+2015-05-21 09:39:06,140 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:06,532 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:06,539 p=10345 u=eproot |  TASK: [openjdk-7-jdk-install | Set JAVA_HOME and PATH] ************************ 
+2015-05-21 09:39:06,812 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:06,815 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:06,825 p=10345 u=eproot |  TASK: [tc-agent-install | Create TeamCity group] ****************************** 
+2015-05-21 09:39:07,026 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:07,103 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:07,111 p=10345 u=eproot |  TASK: [tc-agent-install | Create TeamCity user] ******************************* 
+2015-05-21 09:39:07,328 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:07,430 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:07,437 p=10345 u=eproot |  TASK: [tc-agent-install | Configure TeamCity user sudo] *********************** 
+2015-05-21 09:39:07,689 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:07,802 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:07,809 p=10345 u=eproot |  TASK: [tc-agent-install | Ensure downloads dir exists] ************************ 
+2015-05-21 09:39:08,011 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:08,095 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:08,102 p=10345 u=eproot |  TASK: [tc-agent-install | Download TeamCity Agent] **************************** 
+2015-05-21 09:39:08,338 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:08,439 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:08,446 p=10345 u=eproot |  TASK: [tc-agent-install | Create agents dir] ********************************** 
+2015-05-21 09:39:08,653 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:08,729 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:08,946 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:08,954 p=10345 u=eproot |  TASK: [tc-agent-install | Install anzip] ************************************** 
+2015-05-21 09:39:09,796 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:10,203 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:10,211 p=10345 u=eproot |  TASK: [tc-agent-install | Extract agent] ************************************** 
+2015-05-21 09:39:10,467 p=10345 u=eproot |  skipping: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:10,468 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:10,541 p=10345 u=eproot |  skipping: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:10,541 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:10,790 p=10345 u=eproot |  skipping: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:10,790 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:10,802 p=10345 u=eproot |  TASK: [tc-agent-install | Make agent script executable] *********************** 
+2015-05-21 09:39:11,050 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:11,132 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:11,353 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:11,361 p=10345 u=eproot |  TASK: [tc-agent-install | configure agent work dir] *************************** 
+2015-05-21 09:39:11,570 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:11,650 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:11,875 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:11,882 p=10345 u=eproot |  TASK: [tc-agent-install | configure agent temp dir] *************************** 
+2015-05-21 09:39:12,085 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:12,167 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:12,381 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:12,388 p=10345 u=eproot |  TASK: [tc-agent-install | configure agent system dir] ************************* 
+2015-05-21 09:39:12,592 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:12,675 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:12,893 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:12,900 p=10345 u=eproot |  TASK: [tc-agent-install | configure agent server] ***************************** 
+2015-05-21 09:39:13,118 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:13,202 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:13,427 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:13,434 p=10345 u=eproot |  TASK: [tc-agent-install | configure agent port] ******************************* 
+2015-05-21 09:39:13,645 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:13,731 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:13,951 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:13,959 p=10345 u=eproot |  TASK: [tc-agent-install | configure agent name] ******************************* 
+2015-05-21 09:39:14,161 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:14,244 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:14,464 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:14,471 p=10345 u=eproot |  TASK: [tc-agent-install | Install agent service script] *********************** 
+2015-05-21 09:39:14,740 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:14,853 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:15,167 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:15,174 p=10345 u=eproot |  TASK: [tc-agent-install | Enable agent services] ****************************** 
+2015-05-21 09:39:15,412 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:15,532 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:15,828 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:15,838 p=10345 u=eproot |  TASK: [tc-agent-install | Start agent services] ******************************* 
+2015-05-21 09:39:16,369 p=10345 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 09:39:16,694 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 09:39:17,363 p=10345 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 09:39:17,372 p=10345 u=eproot |  TASK: [tc-agent-install | Install packages] *********************************** 
+2015-05-21 09:39:18,161 p=10345 u=eproot |  ok: [bld02] => (item=git,phantomjs,unzip)
+2015-05-21 09:39:18,437 p=10345 u=eproot |  ok: [bld01] => (item=git,phantomjs,unzip)
+2015-05-21 09:39:18,444 p=10345 u=eproot |  TASK: [tc-agent-install | Download Maven 3] *********************************** 
+2015-05-21 09:39:18,668 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:18,669 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:18,679 p=10345 u=eproot |  TASK: [tc-agent-install | Extract Maven] ************************************** 
+2015-05-21 09:39:18,873 p=10345 u=eproot |  skipping: [bld02]
+2015-05-21 09:39:18,874 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:18,879 p=10345 u=eproot |  skipping: [bld01]
+2015-05-21 09:39:18,880 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:18,886 p=10345 u=eproot |  TASK: [tc-agent-install | Configure environment for Maven] ******************** 
+2015-05-21 09:39:19,136 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:19,253 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:19,260 p=10345 u=eproot |  TASK: [tc-agent-install | Download Gradle] ************************************ 
+2015-05-21 09:39:19,473 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:19,564 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:19,572 p=10345 u=eproot |  TASK: [tc-agent-install | Extract Gradle] ************************************* 
+2015-05-21 09:39:19,770 p=10345 u=eproot |  skipping: [bld02]
+2015-05-21 09:39:19,770 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:19,849 p=10345 u=eproot |  skipping: [bld01]
+2015-05-21 09:39:19,849 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:19,856 p=10345 u=eproot |  TASK: [tc-agent-install | Configure environment for Gradle] ******************* 
+2015-05-21 09:39:20,109 p=10345 u=eproot |  ok: [bld02]
+2015-05-21 09:39:20,224 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:20,232 p=10345 u=eproot |  PLAY [int-env] **************************************************************** 
+2015-05-21 09:39:20,233 p=10345 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 09:39:21,147 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:21,148 p=10345 u=eproot |  TASK: [docker-install | install requirements] ********************************* 
+2015-05-21 09:39:22,272 p=10345 u=eproot |  ok: [bld01] => (item=apt-transport-https,supervisor,python-setuptools)
+2015-05-21 09:39:22,273 p=10345 u=eproot |  TASK: [docker-install | Install pip] ****************************************** 
+2015-05-21 09:39:22,461 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:22,463 p=10345 u=eproot |  TASK: [docker-install | add docker repository key] **************************** 
+2015-05-21 09:39:23,114 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:23,115 p=10345 u=eproot |  TASK: [docker-install | add docker repository] ******************************** 
+2015-05-21 09:39:23,498 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:23,499 p=10345 u=eproot |  TASK: [docker-install | install docker] *************************************** 
+2015-05-21 09:39:24,563 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:24,563 p=10345 u=eproot |  TASK: [docker-install | init docker service] ********************************** 
+2015-05-21 09:39:24,723 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:24,723 p=10345 u=eproot |  TASK: [docker-install | install nsenter] ************************************** 
+2015-05-21 09:39:24,853 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:24,853 p=10345 u=eproot |  TASK: [docker-base-image | install docker-py] ********************************* 
+2015-05-21 09:39:26,181 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:26,182 p=10345 u=eproot |  TASK: [docker-base-image | create docker image conf dir] ********************** 
+2015-05-21 09:39:26,316 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:26,317 p=10345 u=eproot |  TASK: [docker-base-image | copy docker build context] ************************* 
+2015-05-21 09:39:26,517 p=10345 u=eproot |  ok: [bld01] => (item=Dockerfile)
+2015-05-21 09:39:26,711 p=10345 u=eproot |  ok: [bld01] => (item=supervisord.conf)
+2015-05-21 09:39:26,712 p=10345 u=eproot |  TASK: [docker-base-image | build docker image] ******************************** 
+2015-05-21 09:39:27,185 p=10345 u=eproot |  changed: [bld01]
+2015-05-21 09:39:27,186 p=10345 u=eproot |  TASK: [integration-env | ensure scripts dir exists] *************************** 
+2015-05-21 09:39:27,399 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:27,400 p=10345 u=eproot |  TASK: [integration-env | Create integration dir] ****************************** 
+2015-05-21 09:39:27,619 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:27,619 p=10345 u=eproot |  TASK: [integration-env | Install build scripts] ******************************* 
+2015-05-21 09:39:27,938 p=10345 u=eproot |  ok: [bld01] => (item=git_repo.sh)
+2015-05-21 09:39:27,939 p=10345 u=eproot |  TASK: [integration-env | add deploy scripts to path] ************************** 
+2015-05-21 09:39:28,163 p=10345 u=eproot |  ok: [bld01] => (item=git_repo)
+2015-05-21 09:39:28,164 p=10345 u=eproot |  TASK: [integration-env | create docker image conf dir] ************************ 
+2015-05-21 09:39:28,386 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:28,387 p=10345 u=eproot |  TASK: [integration-env | copy docker build context] *************************** 
+2015-05-21 09:39:28,708 p=10345 u=eproot |  ok: [bld01] => (item=Dockerfile)
+2015-05-21 09:39:29,011 p=10345 u=eproot |  ok: [bld01] => (item=supervisord.conf)
+2015-05-21 09:39:29,012 p=10345 u=eproot |  TASK: [integration-env | download oracle jdk] ********************************* 
+2015-05-21 09:39:29,226 p=10345 u=eproot |  ok: [bld01]
+2015-05-21 09:39:29,227 p=10345 u=eproot |  TASK: [integration-env | validate oracle jdk archive] ************************* 
+2015-05-21 09:39:29,236 p=10345 u=eproot |  skipping: [bld01]
+2015-05-21 09:39:29,237 p=10345 u=eproot |  TASK: [integration-env | fail if Oracle JDK download failed] ****************** 
+2015-05-21 09:39:29,252 p=10345 u=eproot |  skipping: [bld01]
+2015-05-21 09:39:29,253 p=10345 u=eproot |  TASK: [integration-env | build docker image] ********************************** 
+2015-05-21 09:39:32,197 p=10345 u=eproot |  changed: [bld01]
+2015-05-21 09:39:32,197 p=10345 u=eproot |  TASK: [integration-env | start docker container] ****************************** 
+2015-05-21 09:39:32,411 p=10345 u=eproot |  failed: [bld01] => {"failed": true, "parsed": false}
+2015-05-21 09:39:32,412 p=10345 u=eproot |  
+SUDO-SUCCESS-xgmhilhhnifbjpjftwsmutfzbfgkijzk
+Traceback (most recent call last):
+  File "/home/eproot/.ansible/tmp/ansible-tmp-1432193972.21-12115187536763/docker", line 2422, in <module>
+    main()
+  File "/home/eproot/.ansible/tmp/ansible-tmp-1432193972.21-12115187536763/docker", line 729, in main
+    docker_api_version = dict(default=docker.client.DEFAULT_DOCKER_API_VERSION),
+AttributeError: 'module' object has no attribute 'DEFAULT_DOCKER_API_VERSION'
+
+2015-05-21 09:39:32,412 p=10345 u=eproot |  FATAL: all hosts have already failed -- aborting
+2015-05-21 09:39:32,412 p=10345 u=eproot |  PLAY RECAP ******************************************************************** 
+2015-05-21 09:39:32,413 p=10345 u=eproot |             to retry, use: --limit @/home/eproot/site.retry
+
+2015-05-21 09:39:32,413 p=10345 u=eproot |  bld01                      : ok=82   changed=2    unreachable=0    failed=1   
+2015-05-21 09:39:32,413 p=10345 u=eproot |  bld02                      : ok=26   changed=0    unreachable=0    failed=0   
+2015-05-21 09:40:17,395 p=12490 u=eproot |  
+2015-05-21 09:40:17,396 p=12490 u=eproot |  /usr/bin/ansible --version
+2015-05-21 09:40:17,396 p=12490 u=eproot |  
+2015-05-21 11:33:23,232 p=17371 u=eproot |   
+2015-05-21 11:33:23,232 p=17371 u=eproot |  /usr/bin/ansible-playbook site.yml -i inventory/dgc-teamcity/hosts -k -K
+2015-05-21 11:33:23,232 p=17371 u=eproot |   
+2015-05-21 11:33:25,625 p=17371 u=eproot |  PLAY [teamcity-db] ************************************************************ 
+2015-05-21 11:33:25,625 p=17371 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 11:33:26,545 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:26,546 p=17371 u=eproot |  TASK: [postgres-tc-install | add postgresql apt repo] ************************* 
+2015-05-21 11:33:27,040 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:27,040 p=17371 u=eproot |  TASK: [postgres-tc-install | add postgresql apt repo key] ********************* 
+2015-05-21 11:33:27,985 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:27,985 p=17371 u=eproot |  TASK: [postgres-tc-install | install system locale] *************************** 
+2015-05-21 11:33:28,232 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:28,233 p=17371 u=eproot |  TASK: [postgres-tc-install | install psycopg2] ******************************** 
+2015-05-21 11:33:29,636 p=17371 u=eproot |  ok: [bld01] => (item=python-psycopg2)
+2015-05-21 11:33:29,637 p=17371 u=eproot |  TASK: [postgres-tc-install | install postgres] ******************************** 
+2015-05-21 11:33:30,430 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:30,430 p=17371 u=eproot |  TASK: [postgres-tc-install | set postgres data dir fact] ********************** 
+2015-05-21 11:33:30,439 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:30,439 p=17371 u=eproot |  TASK: [postgres-tc-install | drop cluster 'main'] ***************************** 
+2015-05-21 11:33:30,628 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:30,629 p=17371 u=eproot |  TASK: [postgres-tc-install | create cluster] ********************************** 
+2015-05-21 11:33:30,796 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:30,797 p=17371 u=eproot |  TASK: [postgres-tc-install | configure postgres] ****************************** 
+2015-05-21 11:33:31,133 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:31,134 p=17371 u=eproot |  TASK: [postgres-tc-install | ensure postresql is running] ********************* 
+2015-05-21 11:33:31,517 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:31,518 p=17371 u=eproot |  TASK: [postgres-tc-install | create db user] ********************************** 
+2015-05-21 11:33:31,843 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:31,843 p=17371 u=eproot |  TASK: [postgres-tc-install | create db] *************************************** 
+2015-05-21 11:33:32,170 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:32,170 p=17371 u=eproot |  TASK: [postgres-tc-install | configure teamcity user access] ****************** 
+2015-05-21 11:33:32,402 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:32,403 p=17371 u=eproot |  TASK: [postgres-tc-install | set owner privileges] **************************** 
+2015-05-21 11:33:32,747 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:32,747 p=17371 u=eproot |  PLAY [teamcity-server] ******************************************************** 
+2015-05-21 11:33:32,748 p=17371 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 11:33:33,684 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:33,687 p=17371 u=eproot |  TASK: [openjdk-7-jdk-install | Install Java] ********************************** 
+2015-05-21 11:33:34,959 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:34,959 p=17371 u=eproot |  TASK: [openjdk-7-jdk-install | Set JAVA_HOME and PATH] ************************ 
+2015-05-21 11:33:35,194 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:35,195 p=17371 u=eproot |  TASK: [tc-server-install | Create TeamCity group] ***************************** 
+2015-05-21 11:33:35,463 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:35,463 p=17371 u=eproot |  TASK: [tc-server-install | Create TeamCity user] ****************************** 
+2015-05-21 11:33:35,762 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:35,762 p=17371 u=eproot |  TASK: [tc-server-install | Set TeamCity home permissions] ********************* 
+2015-05-21 11:33:36,002 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:36,002 p=17371 u=eproot |  TASK: [tc-server-install | Create .ssh directory] ***************************** 
+2015-05-21 11:33:36,244 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:36,245 p=17371 u=eproot |  TASK: [tc-server-install | Generate SSH key for TeamCity] ********************* 
+2015-05-21 11:33:36,545 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:36,546 p=17371 u=eproot |  TASK: [tc-server-install | Set SSH configuration] ***************************** 
+2015-05-21 11:33:36,892 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:36,892 p=17371 u=eproot |  TASK: [tc-server-install | Add bitbucket.org to known hosts] ****************** 
+2015-05-21 11:33:37,137 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:37,137 p=17371 u=eproot |  TASK: [tc-server-install | Ensure downloads dir exists] *********************** 
+2015-05-21 11:33:37,361 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:37,362 p=17371 u=eproot |  TASK: [tc-server-install | Download TeamCity] ********************************* 
+2015-05-21 11:33:37,620 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:37,621 p=17371 u=eproot |  TASK: [tc-server-install | Unarchive TeamCity] ******************************** 
+2015-05-21 11:33:37,830 p=17371 u=eproot |  skipping: [bld01]
+2015-05-21 11:33:37,830 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:37,831 p=17371 u=eproot |  TASK: [tc-server-install | Fix ownership of TeamCity installation] ************ 
+2015-05-21 11:33:38,655 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:38,655 p=17371 u=eproot |  TASK: [tc-server-install | Configure Teamcity startup options] **************** 
+2015-05-21 11:33:38,978 p=17371 u=eproot |  ok: [bld01] => (item=setenv.sh)
+2015-05-21 11:33:39,376 p=17371 u=eproot |  ok: [bld01] => (item=teamcity-init.sh)
+2015-05-21 11:33:39,377 p=17371 u=eproot |  TASK: [tc-server-install | Create TeamCity logs dir] ************************** 
+2015-05-21 11:33:39,622 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:39,623 p=17371 u=eproot |  TASK: [tc-server-install | Create TeamCity data dirs] ************************* 
+2015-05-21 11:33:39,899 p=17371 u=eproot |  ok: [bld01] => (item=.BuildServer)
+2015-05-21 11:33:40,148 p=17371 u=eproot |  ok: [bld01] => (item=.BuildServer/config)
+2015-05-21 11:33:40,398 p=17371 u=eproot |  ok: [bld01] => (item=.BuildServer/lib/jdbc)
+2015-05-21 11:33:40,399 p=17371 u=eproot |  TASK: [tc-server-install | Download PostgreSQL JDBC drivers] ****************** 
+2015-05-21 11:33:40,712 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:40,713 p=17371 u=eproot |  TASK: [tc-server-install | Configure DB access] ******************************* 
+2015-05-21 11:33:41,100 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:41,101 p=17371 u=eproot |  TASK: [tc-server-install | Install TeamCity service script] ******************* 
+2015-05-21 11:33:41,509 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:41,510 p=17371 u=eproot |  TASK: [tc-server-install | Enable TeamCity service] *************************** 
+2015-05-21 11:33:41,859 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:41,860 p=17371 u=eproot |  TASK: [tc-server-install | Start TeamCity service] **************************** 
+2015-05-21 11:33:42,169 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:42,170 p=17371 u=eproot |  PLAY [teamcity-agents] ******************************************************** 
+2015-05-21 11:33:42,171 p=17371 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 11:33:43,204 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:44,133 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:44,141 p=17371 u=eproot |  TASK: [openjdk-7-jdk-install | Install Java] ********************************** 
+2015-05-21 11:33:44,966 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:45,260 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:45,267 p=17371 u=eproot |  TASK: [openjdk-7-jdk-install | Set JAVA_HOME and PATH] ************************ 
+2015-05-21 11:33:45,562 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:45,569 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:45,579 p=17371 u=eproot |  TASK: [tc-agent-install | Create TeamCity group] ****************************** 
+2015-05-21 11:33:45,827 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:45,881 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:45,888 p=17371 u=eproot |  TASK: [tc-agent-install | Create TeamCity user] ******************************* 
+2015-05-21 11:33:46,115 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:46,236 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:46,243 p=17371 u=eproot |  TASK: [tc-agent-install | Configure TeamCity user sudo] *********************** 
+2015-05-21 11:33:46,509 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:46,650 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:46,657 p=17371 u=eproot |  TASK: [tc-agent-install | Ensure downloads dir exists] ************************ 
+2015-05-21 11:33:46,858 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:46,936 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:46,944 p=17371 u=eproot |  TASK: [tc-agent-install | Download TeamCity Agent] **************************** 
+2015-05-21 11:33:47,216 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:47,307 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:47,314 p=17371 u=eproot |  TASK: [tc-agent-install | Create agents dir] ********************************** 
+2015-05-21 11:33:47,516 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:47,655 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:47,893 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:47,900 p=17371 u=eproot |  TASK: [tc-agent-install | Install anzip] ************************************** 
+2015-05-21 11:33:48,713 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:49,122 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:49,130 p=17371 u=eproot |  TASK: [tc-agent-install | Extract agent] ************************************** 
+2015-05-21 11:33:49,379 p=17371 u=eproot |  skipping: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:49,380 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:49,460 p=17371 u=eproot |  skipping: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:49,460 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:49,700 p=17371 u=eproot |  skipping: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:49,701 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:49,708 p=17371 u=eproot |  TASK: [tc-agent-install | Make agent script executable] *********************** 
+2015-05-21 11:33:49,910 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:50,004 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:50,222 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:50,230 p=17371 u=eproot |  TASK: [tc-agent-install | configure agent work dir] *************************** 
+2015-05-21 11:33:50,438 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:50,524 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:50,744 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:50,751 p=17371 u=eproot |  TASK: [tc-agent-install | configure agent temp dir] *************************** 
+2015-05-21 11:33:50,949 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:51,050 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:51,295 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:51,302 p=17371 u=eproot |  TASK: [tc-agent-install | configure agent system dir] ************************* 
+2015-05-21 11:33:51,500 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:51,597 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:51,817 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:51,824 p=17371 u=eproot |  TASK: [tc-agent-install | configure agent server] ***************************** 
+2015-05-21 11:33:52,041 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:52,135 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:52,367 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:52,375 p=17371 u=eproot |  TASK: [tc-agent-install | configure agent port] ******************************* 
+2015-05-21 11:33:52,617 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:52,697 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:52,926 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:52,933 p=17371 u=eproot |  TASK: [tc-agent-install | configure agent name] ******************************* 
+2015-05-21 11:33:53,174 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:53,256 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:53,483 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:53,490 p=17371 u=eproot |  TASK: [tc-agent-install | Install agent service script] *********************** 
+2015-05-21 11:33:53,759 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:53,936 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:54,284 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:54,293 p=17371 u=eproot |  TASK: [tc-agent-install | Enable agent services] ****************************** 
+2015-05-21 11:33:54,531 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:54,734 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:55,052 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:55,060 p=17371 u=eproot |  TASK: [tc-agent-install | Start agent services] ******************************* 
+2015-05-21 11:33:55,555 p=17371 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:33:55,931 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:33:56,771 p=17371 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:33:56,782 p=17371 u=eproot |  TASK: [tc-agent-install | Install packages] *********************************** 
+2015-05-21 11:33:57,525 p=17371 u=eproot |  ok: [bld02] => (item=git,phantomjs,unzip)
+2015-05-21 11:33:57,926 p=17371 u=eproot |  ok: [bld01] => (item=git,phantomjs,unzip)
+2015-05-21 11:33:57,934 p=17371 u=eproot |  TASK: [tc-agent-install | Download Maven 3] *********************************** 
+2015-05-21 11:33:58,162 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:58,179 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:58,186 p=17371 u=eproot |  TASK: [tc-agent-install | Extract Maven] ************************************** 
+2015-05-21 11:33:58,404 p=17371 u=eproot |  skipping: [bld02]
+2015-05-21 11:33:58,405 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:58,496 p=17371 u=eproot |  skipping: [bld01]
+2015-05-21 11:33:58,496 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:58,503 p=17371 u=eproot |  TASK: [tc-agent-install | Configure environment for Maven] ******************** 
+2015-05-21 11:33:58,769 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:58,892 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:58,899 p=17371 u=eproot |  TASK: [tc-agent-install | Download Gradle] ************************************ 
+2015-05-21 11:33:59,120 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:59,216 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:59,223 p=17371 u=eproot |  TASK: [tc-agent-install | Extract Gradle] ************************************* 
+2015-05-21 11:33:59,428 p=17371 u=eproot |  skipping: [bld02]
+2015-05-21 11:33:59,429 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:59,530 p=17371 u=eproot |  skipping: [bld01]
+2015-05-21 11:33:59,531 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:59,537 p=17371 u=eproot |  TASK: [tc-agent-install | Configure environment for Gradle] ******************* 
+2015-05-21 11:33:59,808 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:33:59,927 p=17371 u=eproot |  ok: [bld01]
+2015-05-21 11:33:59,934 p=17371 u=eproot |  PLAY [int-env] **************************************************************** 
+2015-05-21 11:33:59,935 p=17371 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 11:34:00,424 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:34:00,425 p=17371 u=eproot |  TASK: [docker-install | install requirements] ********************************* 
+2015-05-21 11:34:04,620 p=17371 u=eproot |  changed: [bld02] => (item=apt-transport-https,supervisor,python-setuptools)
+2015-05-21 11:34:04,622 p=17371 u=eproot |  TASK: [docker-install | Install pip] ****************************************** 
+2015-05-21 11:34:07,959 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:34:07,959 p=17371 u=eproot |  TASK: [docker-install | add docker repository key] **************************** 
+2015-05-21 11:34:08,478 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:34:08,479 p=17371 u=eproot |  TASK: [docker-install | add docker repository] ******************************** 
+2015-05-21 11:34:21,643 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:34:21,644 p=17371 u=eproot |  TASK: [docker-install | install docker] *************************************** 
+2015-05-21 11:34:32,739 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:34:32,740 p=17371 u=eproot |  TASK: [docker-install | init docker service] ********************************** 
+2015-05-21 11:34:32,911 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:34:32,912 p=17371 u=eproot |  TASK: [docker-install | install nsenter] ************************************** 
+2015-05-21 11:35:19,626 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:35:19,627 p=17371 u=eproot |  TASK: [docker-base-image | install docker-py] ********************************* 
+2015-05-21 11:35:23,047 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:35:23,048 p=17371 u=eproot |  TASK: [docker-base-image | create docker image conf dir] ********************** 
+2015-05-21 11:35:23,197 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:35:23,198 p=17371 u=eproot |  TASK: [docker-base-image | copy docker build context] ************************* 
+2015-05-21 11:35:23,417 p=17371 u=eproot |  changed: [bld02] => (item=Dockerfile)
+2015-05-21 11:35:23,612 p=17371 u=eproot |  changed: [bld02] => (item=supervisord.conf)
+2015-05-21 11:35:23,613 p=17371 u=eproot |  TASK: [docker-base-image | build docker image] ******************************** 
+2015-05-21 11:36:16,847 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:36:16,848 p=17371 u=eproot |  TASK: [integration-env | ensure scripts dir exists] *************************** 
+2015-05-21 11:36:16,989 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:36:16,989 p=17371 u=eproot |  TASK: [integration-env | Create integration dir] ****************************** 
+2015-05-21 11:36:17,131 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:36:17,131 p=17371 u=eproot |  TASK: [integration-env | Install build scripts] ******************************* 
+2015-05-21 11:36:17,330 p=17371 u=eproot |  changed: [bld02] => (item=git_repo.sh)
+2015-05-21 11:36:17,330 p=17371 u=eproot |  TASK: [integration-env | add deploy scripts to path] ************************** 
+2015-05-21 11:36:17,469 p=17371 u=eproot |  changed: [bld02] => (item=git_repo)
+2015-05-21 11:36:17,470 p=17371 u=eproot |  TASK: [integration-env | create docker image conf dir] ************************ 
+2015-05-21 11:36:17,611 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:36:17,612 p=17371 u=eproot |  TASK: [integration-env | copy docker build context] *************************** 
+2015-05-21 11:36:17,822 p=17371 u=eproot |  changed: [bld02] => (item=Dockerfile)
+2015-05-21 11:36:18,015 p=17371 u=eproot |  changed: [bld02] => (item=supervisord.conf)
+2015-05-21 11:36:18,016 p=17371 u=eproot |  TASK: [integration-env | download oracle jdk] ********************************* 
+2015-05-21 11:36:50,744 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:36:50,745 p=17371 u=eproot |  TASK: [integration-env | validate oracle jdk archive] ************************* 
+2015-05-21 11:36:53,996 p=17371 u=eproot |  ok: [bld02]
+2015-05-21 11:36:53,996 p=17371 u=eproot |  TASK: [integration-env | fail if Oracle JDK download failed] ****************** 
+2015-05-21 11:36:54,006 p=17371 u=eproot |  skipping: [bld02]
+2015-05-21 11:36:54,007 p=17371 u=eproot |  TASK: [integration-env | build docker image] ********************************** 
+2015-05-21 11:37:19,113 p=17371 u=eproot |  changed: [bld02]
+2015-05-21 11:37:19,114 p=17371 u=eproot |  TASK: [integration-env | start docker container] ****************************** 
+2015-05-21 11:37:19,340 p=17371 u=eproot |  failed: [bld02] => {"failed": true, "parsed": false}
+2015-05-21 11:37:19,341 p=17371 u=eproot |  
+SUDO-SUCCESS-aeuorqjqnkmyqybmdpufhspyaeqeawul
+Traceback (most recent call last):
+  File "/home/eproot/.ansible/tmp/ansible-tmp-1432201039.13-77223851277838/docker", line 2422, in <module>
+    main()
+  File "/home/eproot/.ansible/tmp/ansible-tmp-1432201039.13-77223851277838/docker", line 729, in main
+    docker_api_version = dict(default=docker.client.DEFAULT_DOCKER_API_VERSION),
+AttributeError: 'module' object has no attribute 'DEFAULT_DOCKER_API_VERSION'
+
+2015-05-21 11:37:19,341 p=17371 u=eproot |  FATAL: all hosts have already failed -- aborting
+2015-05-21 11:37:19,341 p=17371 u=eproot |  PLAY RECAP ******************************************************************** 
+2015-05-21 11:37:19,342 p=17371 u=eproot |             to retry, use: --limit @/home/eproot/site.retry
+
+2015-05-21 11:37:19,342 p=17371 u=eproot |  bld01                      : ok=62   changed=0    unreachable=0    failed=0   
+2015-05-21 11:37:19,342 p=17371 u=eproot |  bld02                      : ok=47   changed=18   unreachable=0    failed=1   
+2015-05-21 11:37:39,840 p=19613 u=eproot |   
+2015-05-21 11:37:39,840 p=19613 u=eproot |  /usr/bin/ansible-playbook site.yml -i inventory/dgc-teamcity/hosts -k -K
+2015-05-21 11:37:39,840 p=19613 u=eproot |   
+2015-05-21 11:37:50,471 p=19613 u=eproot |  PLAY [teamcity-db] ************************************************************ 
+2015-05-21 11:37:50,472 p=19613 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 11:37:51,346 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:51,346 p=19613 u=eproot |  TASK: [postgres-tc-install | add postgresql apt repo] ************************* 
+2015-05-21 11:37:51,699 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:51,699 p=19613 u=eproot |  TASK: [postgres-tc-install | add postgresql apt repo key] ********************* 
+2015-05-21 11:37:52,387 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:52,388 p=19613 u=eproot |  TASK: [postgres-tc-install | install system locale] *************************** 
+2015-05-21 11:37:52,633 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:52,634 p=19613 u=eproot |  TASK: [postgres-tc-install | install psycopg2] ******************************** 
+2015-05-21 11:37:53,902 p=19613 u=eproot |  ok: [bld01] => (item=python-psycopg2)
+2015-05-21 11:37:53,902 p=19613 u=eproot |  TASK: [postgres-tc-install | install postgres] ******************************** 
+2015-05-21 11:37:54,916 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:54,916 p=19613 u=eproot |  TASK: [postgres-tc-install | set postgres data dir fact] ********************** 
+2015-05-21 11:37:54,925 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:54,925 p=19613 u=eproot |  TASK: [postgres-tc-install | drop cluster 'main'] ***************************** 
+2015-05-21 11:37:55,064 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:55,064 p=19613 u=eproot |  TASK: [postgres-tc-install | create cluster] ********************************** 
+2015-05-21 11:37:55,202 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:55,202 p=19613 u=eproot |  TASK: [postgres-tc-install | configure postgres] ****************************** 
+2015-05-21 11:37:55,520 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:55,521 p=19613 u=eproot |  TASK: [postgres-tc-install | ensure postresql is running] ********************* 
+2015-05-21 11:37:55,937 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:55,938 p=19613 u=eproot |  TASK: [postgres-tc-install | create db user] ********************************** 
+2015-05-21 11:37:56,309 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:56,310 p=19613 u=eproot |  TASK: [postgres-tc-install | create db] *************************************** 
+2015-05-21 11:37:56,688 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:56,689 p=19613 u=eproot |  TASK: [postgres-tc-install | configure teamcity user access] ****************** 
+2015-05-21 11:37:56,916 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:56,916 p=19613 u=eproot |  TASK: [postgres-tc-install | set owner privileges] **************************** 
+2015-05-21 11:37:57,238 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:57,239 p=19613 u=eproot |  PLAY [teamcity-server] ******************************************************** 
+2015-05-21 11:37:57,240 p=19613 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 11:37:58,190 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:58,191 p=19613 u=eproot |  TASK: [openjdk-7-jdk-install | Install Java] ********************************** 
+2015-05-21 11:37:59,334 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:59,335 p=19613 u=eproot |  TASK: [openjdk-7-jdk-install | Set JAVA_HOME and PATH] ************************ 
+2015-05-21 11:37:59,527 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:59,528 p=19613 u=eproot |  TASK: [tc-server-install | Create TeamCity group] ***************************** 
+2015-05-21 11:37:59,677 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:59,678 p=19613 u=eproot |  TASK: [tc-server-install | Create TeamCity user] ****************************** 
+2015-05-21 11:37:59,917 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:37:59,918 p=19613 u=eproot |  TASK: [tc-server-install | Set TeamCity home permissions] ********************* 
+2015-05-21 11:38:00,188 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:00,189 p=19613 u=eproot |  TASK: [tc-server-install | Create .ssh directory] ***************************** 
+2015-05-21 11:38:00,522 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:00,523 p=19613 u=eproot |  TASK: [tc-server-install | Generate SSH key for TeamCity] ********************* 
+2015-05-21 11:38:00,835 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:00,836 p=19613 u=eproot |  TASK: [tc-server-install | Set SSH configuration] ***************************** 
+2015-05-21 11:38:01,063 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:01,064 p=19613 u=eproot |  TASK: [tc-server-install | Add bitbucket.org to known hosts] ****************** 
+2015-05-21 11:38:01,221 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:01,221 p=19613 u=eproot |  TASK: [tc-server-install | Ensure downloads dir exists] *********************** 
+2015-05-21 11:38:01,372 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:01,374 p=19613 u=eproot |  TASK: [tc-server-install | Download TeamCity] ********************************* 
+2015-05-21 11:38:01,545 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:01,545 p=19613 u=eproot |  TASK: [tc-server-install | Unarchive TeamCity] ******************************** 
+2015-05-21 11:38:01,692 p=19613 u=eproot |  skipping: [bld01]
+2015-05-21 11:38:01,693 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:01,693 p=19613 u=eproot |  TASK: [tc-server-install | Fix ownership of TeamCity installation] ************ 
+2015-05-21 11:38:02,519 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:02,519 p=19613 u=eproot |  TASK: [tc-server-install | Configure Teamcity startup options] **************** 
+2015-05-21 11:38:02,817 p=19613 u=eproot |  ok: [bld01] => (item=setenv.sh)
+2015-05-21 11:38:03,169 p=19613 u=eproot |  ok: [bld01] => (item=teamcity-init.sh)
+2015-05-21 11:38:03,170 p=19613 u=eproot |  TASK: [tc-server-install | Create TeamCity logs dir] ************************** 
+2015-05-21 11:38:03,459 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:03,460 p=19613 u=eproot |  TASK: [tc-server-install | Create TeamCity data dirs] ************************* 
+2015-05-21 11:38:03,789 p=19613 u=eproot |  ok: [bld01] => (item=.BuildServer)
+2015-05-21 11:38:04,063 p=19613 u=eproot |  ok: [bld01] => (item=.BuildServer/config)
+2015-05-21 11:38:04,295 p=19613 u=eproot |  ok: [bld01] => (item=.BuildServer/lib/jdbc)
+2015-05-21 11:38:04,296 p=19613 u=eproot |  TASK: [tc-server-install | Download PostgreSQL JDBC drivers] ****************** 
+2015-05-21 11:38:04,529 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:04,530 p=19613 u=eproot |  TASK: [tc-server-install | Configure DB access] ******************************* 
+2015-05-21 11:38:04,868 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:04,869 p=19613 u=eproot |  TASK: [tc-server-install | Install TeamCity service script] ******************* 
+2015-05-21 11:38:05,232 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:05,233 p=19613 u=eproot |  TASK: [tc-server-install | Enable TeamCity service] *************************** 
+2015-05-21 11:38:05,437 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:05,438 p=19613 u=eproot |  TASK: [tc-server-install | Start TeamCity service] **************************** 
+2015-05-21 11:38:05,619 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:05,620 p=19613 u=eproot |  PLAY [teamcity-agents] ******************************************************** 
+2015-05-21 11:38:05,621 p=19613 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 11:38:06,239 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:06,684 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:06,697 p=19613 u=eproot |  TASK: [openjdk-7-jdk-install | Install Java] ********************************** 
+2015-05-21 11:38:07,637 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:07,924 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:07,932 p=19613 u=eproot |  TASK: [openjdk-7-jdk-install | Set JAVA_HOME and PATH] ************************ 
+2015-05-21 11:38:08,232 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:08,242 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:08,253 p=19613 u=eproot |  TASK: [tc-agent-install | Create TeamCity group] ****************************** 
+2015-05-21 11:38:08,484 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:08,568 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:08,575 p=19613 u=eproot |  TASK: [tc-agent-install | Create TeamCity user] ******************************* 
+2015-05-21 11:38:08,819 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:08,934 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:08,946 p=19613 u=eproot |  TASK: [tc-agent-install | Configure TeamCity user sudo] *********************** 
+2015-05-21 11:38:09,280 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:09,418 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:09,425 p=19613 u=eproot |  TASK: [tc-agent-install | Ensure downloads dir exists] ************************ 
+2015-05-21 11:38:09,653 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:09,711 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:09,719 p=19613 u=eproot |  TASK: [tc-agent-install | Download TeamCity Agent] **************************** 
+2015-05-21 11:38:09,982 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:10,081 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:10,089 p=19613 u=eproot |  TASK: [tc-agent-install | Create agents dir] ********************************** 
+2015-05-21 11:38:10,327 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:10,408 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:10,644 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:10,652 p=19613 u=eproot |  TASK: [tc-agent-install | Install anzip] ************************************** 
+2015-05-21 11:38:11,572 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:11,946 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:11,954 p=19613 u=eproot |  TASK: [tc-agent-install | Extract agent] ************************************** 
+2015-05-21 11:38:12,197 p=19613 u=eproot |  skipping: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:12,198 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:12,212 p=19613 u=eproot |  skipping: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:12,212 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:12,518 p=19613 u=eproot |  skipping: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:12,519 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:12,526 p=19613 u=eproot |  TASK: [tc-agent-install | Make agent script executable] *********************** 
+2015-05-21 11:38:12,734 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:12,832 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:13,106 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:13,114 p=19613 u=eproot |  TASK: [tc-agent-install | configure agent work dir] *************************** 
+2015-05-21 11:38:13,321 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:13,484 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:13,746 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:13,754 p=19613 u=eproot |  TASK: [tc-agent-install | configure agent temp dir] *************************** 
+2015-05-21 11:38:13,985 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:14,063 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:14,290 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:14,298 p=19613 u=eproot |  TASK: [tc-agent-install | configure agent system dir] ************************* 
+2015-05-21 11:38:14,545 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:14,635 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:14,891 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:14,899 p=19613 u=eproot |  TASK: [tc-agent-install | configure agent server] ***************************** 
+2015-05-21 11:38:15,172 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:15,231 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:15,466 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:15,474 p=19613 u=eproot |  TASK: [tc-agent-install | configure agent port] ******************************* 
+2015-05-21 11:38:15,692 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:15,806 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:16,062 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:16,071 p=19613 u=eproot |  TASK: [tc-agent-install | configure agent name] ******************************* 
+2015-05-21 11:38:16,290 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:16,372 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:16,593 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:16,601 p=19613 u=eproot |  TASK: [tc-agent-install | Install agent service script] *********************** 
+2015-05-21 11:38:16,911 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:17,016 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:17,363 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:17,371 p=19613 u=eproot |  TASK: [tc-agent-install | Enable agent services] ****************************** 
+2015-05-21 11:38:17,635 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:17,778 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:18,196 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:18,204 p=19613 u=eproot |  TASK: [tc-agent-install | Start agent services] ******************************* 
+2015-05-21 11:38:18,754 p=19613 u=eproot |  ok: [bld02] => (item={'name': 'fiat', 'port': 9090})
+2015-05-21 11:38:18,809 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'kia', 'port': 9090})
+2015-05-21 11:38:19,640 p=19613 u=eproot |  ok: [bld01] => (item={'name': 'lada', 'port': 9091})
+2015-05-21 11:38:19,648 p=19613 u=eproot |  TASK: [tc-agent-install | Install packages] *********************************** 
+2015-05-21 11:38:20,514 p=19613 u=eproot |  ok: [bld02] => (item=git,phantomjs,unzip)
+2015-05-21 11:38:21,092 p=19613 u=eproot |  ok: [bld01] => (item=git,phantomjs,unzip)
+2015-05-21 11:38:21,102 p=19613 u=eproot |  TASK: [tc-agent-install | Download Maven 3] *********************************** 
+2015-05-21 11:38:21,376 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:21,482 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:21,489 p=19613 u=eproot |  TASK: [tc-agent-install | Extract Maven] ************************************** 
+2015-05-21 11:38:21,714 p=19613 u=eproot |  skipping: [bld02]
+2015-05-21 11:38:21,714 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:21,830 p=19613 u=eproot |  skipping: [bld01]
+2015-05-21 11:38:21,830 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:21,838 p=19613 u=eproot |  TASK: [tc-agent-install | Configure environment for Maven] ******************** 
+2015-05-21 11:38:22,127 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:22,280 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:22,288 p=19613 u=eproot |  TASK: [tc-agent-install | Download Gradle] ************************************ 
+2015-05-21 11:38:22,509 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:22,654 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:22,662 p=19613 u=eproot |  TASK: [tc-agent-install | Extract Gradle] ************************************* 
+2015-05-21 11:38:22,877 p=19613 u=eproot |  skipping: [bld02]
+2015-05-21 11:38:22,878 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:22,970 p=19613 u=eproot |  skipping: [bld01]
+2015-05-21 11:38:22,971 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:22,978 p=19613 u=eproot |  TASK: [tc-agent-install | Configure environment for Gradle] ******************* 
+2015-05-21 11:38:23,252 p=19613 u=eproot |  ok: [bld02]
+2015-05-21 11:38:23,384 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:23,392 p=19613 u=eproot |  PLAY [nexus-server] *********************************************************** 
+2015-05-21 11:38:23,393 p=19613 u=eproot |  GATHERING FACTS *************************************************************** 
+2015-05-21 11:38:24,271 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:24,272 p=19613 u=eproot |  TASK: [nexus-install | Create Nexus group] ************************************ 
+2015-05-21 11:38:24,559 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:24,560 p=19613 u=eproot |  TASK: [nexus-install | Create Nexus user] ************************************* 
+2015-05-21 11:38:24,839 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:24,840 p=19613 u=eproot |  TASK: [nexus-install | Ensure downloads dir exists] *************************** 
+2015-05-21 11:38:25,077 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:25,078 p=19613 u=eproot |  TASK: [nexus-install | Download Nexus] **************************************** 
+2015-05-21 11:38:25,389 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:25,390 p=19613 u=eproot |  TASK: [nexus-install | Unarchive Nexus] *************************************** 
+2015-05-21 11:38:25,676 p=19613 u=eproot |  skipping: [bld01]
+2015-05-21 11:38:25,676 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:25,677 p=19613 u=eproot |  TASK: [nexus-install | Fix ownership of Nexus installation] ******************* 
+2015-05-21 11:38:25,993 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:25,993 p=19613 u=eproot |  TASK: [nexus-install | Configure Nexus] *************************************** 
+2015-05-21 11:38:26,363 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:26,364 p=19613 u=eproot |  TASK: [nexus-install | Create nexus work directory] *************************** 
+2015-05-21 11:38:26,638 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:26,639 p=19613 u=eproot |  TASK: [nexus-install | Delete old work directory] ***************************** 
+2015-05-21 11:38:26,869 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:26,870 p=19613 u=eproot |  TASK: [nexus-install | Configure Nexus service home] ************************** 
+2015-05-21 11:38:27,098 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:27,101 p=19613 u=eproot |  TASK: [nexus-install | Configure Nexus service user] ************************** 
+2015-05-21 11:38:27,342 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:27,343 p=19613 u=eproot |  TASK: [nexus-install | Configure Nexus service PID file] ********************** 
+2015-05-21 11:38:27,553 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:27,554 p=19613 u=eproot |  TASK: [nexus-install | Copy service script] *********************************** 
+2015-05-21 11:38:27,777 p=19613 u=eproot |  changed: [bld01]
+2015-05-21 11:38:27,778 p=19613 u=eproot |  TASK: [nexus-install | Chown service script] ********************************** 
+2015-05-21 11:38:28,011 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:28,012 p=19613 u=eproot |  TASK: [nexus-install | Enable Nexus Service] ********************************** 
+2015-05-21 11:38:28,261 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:28,262 p=19613 u=eproot |  TASK: [nexus-install | Start Nexus Service] *********************************** 
+2015-05-21 11:38:28,671 p=19613 u=eproot |  ok: [bld01]
+2015-05-21 11:38:28,672 p=19613 u=eproot |  PLAY RECAP ******************************************************************** 
+2015-05-21 11:38:28,672 p=19613 u=eproot |  bld01                      : ok=78   changed=1    unreachable=0    failed=0   
+2015-05-21 11:38:28,673 p=19613 u=eproot |  bld02                      : ok=26   changed=0    unreachable=0    failed=0   

@@ -1,10 +1,10 @@
 package ee.elinyo.teamcity.plugins.ansible.agent;
 
-import ee.elinyo.teamcity.plugins.ansible.common.AnsibleRunnerConstants;
 import jetbrains.buildServer.agent.AgentBuildRunnerInfo;
 import jetbrains.buildServer.agent.BuildAgentConfiguration;
 import jetbrains.buildServer.agent.runner.CommandLineBuildService;
 import jetbrains.buildServer.agent.runner.CommandLineBuildServiceFactory;
+import ee.elinyo.teamcity.plugins.ansible.common.AnsibleRunnerConstants;
 
 public class AnsibleRunServiceFactory implements CommandLineBuildServiceFactory, AgentBuildRunnerInfo {
     
@@ -19,6 +19,8 @@ public class AnsibleRunServiceFactory implements CommandLineBuildServiceFactory,
 
     @Override
     public boolean canRun(BuildAgentConfiguration agentConfiguration) {
+        // TODO
+        //if (SystemInfo.isLinux)
         return true;
     }
 

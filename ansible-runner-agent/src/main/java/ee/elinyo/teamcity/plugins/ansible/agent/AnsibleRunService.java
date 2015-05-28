@@ -25,7 +25,7 @@ public class AnsibleRunService extends BuildServiceAdapter {
         args.add("echo");
         args.add(arg.toString());
         
-        return new SimpleProgramCommandLine(getEnvironmentVariables(), workingDir, "cmd", args);
+        return new SimpleProgramCommandLine(getEnvironmentVariables(), workingDir, "C:\\Users\\Andrei\\Desktop\\ansible_logs\\printer.bat", args);
     }
 
 }
