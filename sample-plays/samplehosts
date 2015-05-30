@@ -1,0 +1,2 @@
+sample1 ansible_connection=local
+sample2 ansible_connection=local
