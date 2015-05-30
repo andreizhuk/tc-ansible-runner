@@ -8,6 +8,8 @@ import jetbrains.buildServer.agent.runner.CommandLineBuildServiceFactory;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.intellij.openapi.util.SystemInfo;
+
 import ee.elinyo.teamcity.plugins.ansible.common.AnsibleRunnerConstants;
 
 public class AnsibleRunServiceFactory implements CommandLineBuildServiceFactory, AgentBuildRunnerInfo {
@@ -25,9 +27,7 @@ public class AnsibleRunServiceFactory implements CommandLineBuildServiceFactory,
 
     @Override
     public boolean canRun(BuildAgentConfiguration agentConfiguration) {
-        // TODO
-        //if (SystemInfo.isLinux)
-        return true;
+        return SystemInfo.isLinux;
     }
 
     @Override

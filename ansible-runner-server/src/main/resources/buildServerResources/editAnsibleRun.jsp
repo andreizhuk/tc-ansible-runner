@@ -3,7 +3,7 @@
 <%@ taglib prefix="forms" tagdir="/WEB-INF/tags/forms" %>
 <%@ taglib prefix="l" tagdir="/WEB-INF/tags/layout" %>
 <%@ taglib prefix="bs" tagdir="/WEB-INF/tags" %>
-<jsp:useBean id="bean" class="ee.elinyo.teamcity.plugins.ansible.server.AnsibleRunBean"/>
+<jsp:useBean id="bean" class="ee.elinyo.teamcity.plugins.ansible.server.AnsibleRunConfigBean"/>
 <jsp:useBean id="propertiesBean" scope="request" type="jetbrains.buildServer.controllers.BasePropertiesBean"/>
 
 <forms:workingDirectory/>
@@ -12,10 +12,44 @@
   <th><label for="${bean.commandTypeKey}">Run:</label></th>
   <td>
     <props:selectProperty name="${bean.commandTypeKey}" id="ar_command_type_option" className="mediumField" onchange="BS.AnsibleRun.updatCommandType()">
-      <props:option value="${bean.playbookCommandValue}">Playbook</props:option>
-      <props:option value="${bean.customCommandValue}">Custom</props:option>
+      <props:option value="${bean.executableCommandValue}">Executable</props:option>
+      <props:option value="${bean.customScriptCommandValue}">Custom Script</props:option>
     </props:selectProperty>
     <span class="smallNote">You can use custom when ansible is executed via wrapper scripts</span>
+  </td>
+</tr>
+
+<tr id="ar_executable">
+  <th><label for="${bean.executableKey}">Command:</label></th>
+  <td>
+    <props:textProperty name="${bean.executableKey}" className="longField"/>
+    <span class="smallNote">Absolute path to custom executable if not available on path</span>
+  </td>
+</tr>
+
+<tr id="ar_playbook_file">
+  <th><label for="${bean.playbookFileKey}">Playbook:</label></th>
+  <td>
+    <props:textProperty name="${bean.playbookFileKey}" className="longField"/>
+    <bs:vcsTree fieldId="${bean.playbookFileKey}"/>
+    <span class="smallNote">Path to the playbook file, absolute or relative to the checkout directory</span>
+  </td>
+</tr>
+
+<tr id="ar_inventory_file">
+  <th><label for="${bean.inventoryFileKey}">Inventory:</label></th>
+  <td>
+    <props:textProperty name="${bean.inventoryFileKey}" className="longField"/>
+    <bs:vcsTree fieldId="${bean.inventoryFileKey}"/>
+    <span class="smallNote">Path to the inventory file, absolute or relative to the checkout directory</span>
+  </td>
+</tr>
+
+<tr id="ar_options">
+  <th><label for="${bean.optionsKey}">Options:</label></th>
+  <td>
+     <props:textProperty name="${bean.optionsKey}" className="longField"/>
+     <span class="smallNote">Command line options: inventory, user, etc.</span>
   </td>
 </tr>
 
@@ -30,26 +64,23 @@
   </td>
 </tr>
 
-<tr id="ar_playbook_file">
-  <th><label for="${bean.playbookFileKey}">Playbook File:</label></th>
-  <td>
-    <props:textProperty name="${bean.playbookFileKey}" className="longField"/>
-    <bs:vcsTree fieldId="${bean.playbookFileKey}"/>
-    <span class="smallNote">Path to the playbook file, relative to the checkout directory</span>
-  </td>
-</tr>
-
 <script type="text/javascript">
   BS.AnsibleRun = {
     updatCommandType : function() {
       var val = $('ar_command_type_option').value;
-      if (val == '${bean.playbookCommandValue}') {
+      if (val == '${bean.executableCommandValue}') {
         BS.Util.hide($('ar_sourceCode'));
         BS.Util.show($('ar_playbook_file'));
+        BS.Util.show($('ar_inventory_file'));
+        BS.Util.show($('ar_executable'));
+        BS.Util.show($('ar_options'));
       }
-      if (val == '${bean.customCommandValue}') {
-        BS.Util.show($('ar_sourceCode'));
+      if (val == '${bean.customScriptCommandValue}') {
         BS.Util.hide($('ar_playbook_file'));
+        BS.Util.hide($('ar_inventory_file'));
+        BS.Util.hide($('ar_executable'));
+        BS.Util.hide($('ar_options'));
+        BS.Util.show($('ar_sourceCode'));
       }
       BS.MultilineProperties.updateVisible();
     },

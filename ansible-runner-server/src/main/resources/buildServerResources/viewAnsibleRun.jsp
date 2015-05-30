@@ -3,7 +3,7 @@
 <%@ taglib prefix="forms" tagdir="/WEB-INF/tags/forms" %>
 <%@ taglib prefix="l" tagdir="/WEB-INF/tags/layout" %>
 <%@ taglib prefix="bs" tagdir="/WEB-INF/tags" %>
-<jsp:useBean id="bean" class="ee.elinyo.teamcity.plugins.ansible.server.AnsibleRunBean"/>
+<jsp:useBean id="bean" class="ee.elinyo.teamcity.plugins.ansible.server.AnsibleRunConfigBean"/>
 <jsp:useBean id="propertiesBean" scope="request" type="jetbrains.buildServer.controllers.BasePropertiesBean"/>
 
 <div class="parameter">

@@ -1,21 +1,26 @@
 package ee.elinyo.teamcity.plugins.ansible.agent;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-import org.jetbrains.annotations.NotNull;
 
 import jetbrains.buildServer.RunBuildException;
 import jetbrains.buildServer.agent.artifacts.ArtifactsWatcher;
 import jetbrains.buildServer.agent.runner.BuildServiceAdapter;
-import jetbrains.buildServer.agent.runner.LoggingProcessListener;
 import jetbrains.buildServer.agent.runner.ProcessListener;
 import jetbrains.buildServer.agent.runner.ProgramCommandLine;
 import jetbrains.buildServer.agent.runner.SimpleProgramCommandLine;
-import ee.elinyo.teamcity.plugins.ansible.common.AnsibleRunnerConstants;
+
+import org.jetbrains.annotations.NotNull;
+
+import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.util.text.StringUtil;
+
+import ee.elinyo.teamcity.plugins.ansible.common.AnsibleCommand;
+import ee.elinyo.teamcity.plugins.ansible.common.AnsibleRunConfig;
 
 public class AnsibleRunService extends BuildServiceAdapter {
+    
+    protected static final Logger LOG = Logger.getInstance(AnsibleRunService.class.getName());
     
     private ArtifactsWatcher artifactsWatcher;
 
@@ -25,21 +30,43 @@ public class AnsibleRunService extends BuildServiceAdapter {
 
     @Override
     public ProgramCommandLine makeProgramCommandLine() throws RunBuildException {
-        final String workingDir = getWorkingDirectory().getPath();
-        
-        StringBuilder arg = new StringBuilder("");
-        arg.append(getRunnerParameters().get(AnsibleRunnerConstants.PLAYBOOK_FILE_KEY));
-        arg.append(getRunnerParameters().get(AnsibleRunnerConstants.COMMAND_TYPE_KEY));
-        arg.append(getRunnerParameters().get(AnsibleRunnerConstants.SOURCE_CODE_KEY));
-        
-        List<String> args = new ArrayList<String>();
-        args.add("/c");
-        args.add("echo");
-        args.add(arg.toString());
-        
-        return new SimpleProgramCommandLine(getEnvironmentVariables(), workingDir, "C:\\Users\\Andrei\\Desktop\\ansible_logs\\printer.bat", args);
+        AnsibleRunConfig config = new AnsibleRunConfig(getRunnerParameters());
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Going to run ansible with parameters: " + config.toString());
+        }
+        if (AnsibleCommand.CUSTOM_SCRIPT.equals(config.getCommandType())) {
+            return makeCustomScriptCommand(config);
+        }
+        return makeExecutableCommand(config);
     }
     
+    private ProgramCommandLine makeExecutableCommand(AnsibleRunConfig config)
+            throws RunBuildException {
+        String workingDir = getWorkingDirectory().getPath();
+        List<String> args = new ArrayList<String>();
+        if (!StringUtil.isEmptyOrSpaces(config.getInventory())) {
+            args.add("-i");
+            args.add(config.getInventory());
+        }
+        if (StringUtil.isEmptyOrSpaces(config.getPlaybook())) {
+            throw new RunBuildException("Ansible playbook should be specified");
+        }
+        args.add(config.getPlaybook());
+        if (!StringUtil.isEmptyOrSpaces(config.getOptions())) {
+            String opts = config.getOptions().replace("\n", "").replace("\r", "");
+            args.add(opts);
+        }
+        return new SimpleProgramCommandLine(getEnvironmentVariables(),
+                workingDir,
+               config.getExecutable(), args);
+    }
+
+    private ProgramCommandLine makeCustomScriptCommand(AnsibleRunConfig config) throws RunBuildException {
+        String workingDir = getWorkingDirectory().getPath();
+        LOG.warn("Not Implemented");
+        throw new RunBuildException("Ansible customs script is not imlemented");
+    }
+
     @NotNull
     @Override
     public List<ProcessListener> getListeners() {

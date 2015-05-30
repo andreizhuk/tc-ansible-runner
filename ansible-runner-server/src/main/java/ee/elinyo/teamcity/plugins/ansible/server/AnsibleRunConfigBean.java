@@ -6,7 +6,7 @@ import java.util.Collection;
 import ee.elinyo.teamcity.plugins.ansible.common.AnsibleCommand;
 import ee.elinyo.teamcity.plugins.ansible.common.AnsibleRunnerConstants;
 
-public class AnsibleRunBean {
+public class AnsibleRunConfigBean {
     
     public String getCommandTypeKey() {
         return AnsibleRunnerConstants.COMMAND_TYPE_KEY;
@@ -16,12 +16,12 @@ public class AnsibleRunBean {
         return Arrays.asList(AnsibleCommand.values());
     }
     
-    public String getCustomCommandValue() {
-        return AnsibleCommand.CUSTOM.name();
+    public String getCustomScriptCommandValue() {
+        return AnsibleCommand.CUSTOM_SCRIPT.getValue();
     }
     
-    public String getPlaybookCommandValue() {
-        return AnsibleCommand.PLAYBOOK.name();
+    public String getExecutableCommandValue() {
+        return AnsibleCommand.EXECUTABLE.getValue();
     }
     
     public String getScriptCodeKey() {
@@ -32,8 +32,17 @@ public class AnsibleRunBean {
         return AnsibleRunnerConstants.PLAYBOOK_FILE_KEY;
     }
     
-    public static AnsibleRunBean getInstance() {
-        return new AnsibleRunBean();
+    public String getInventoryFileKey() {
+        return AnsibleRunnerConstants.INVENTORY_FILE_KEY;
     }
+    
+    public String getExecutableKey() {
+        return AnsibleRunnerConstants.EXECUTABLE_KEY;
+    }
+    
+    public String getOptionsKey() {
+        return AnsibleRunnerConstants.OPTIONS_KEY;
+    }
+    
 
 }
