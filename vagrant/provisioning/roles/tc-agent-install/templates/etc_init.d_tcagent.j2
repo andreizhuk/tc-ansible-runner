@@ -1,0 +1,41 @@
+#!/bin/sh
+
+
+start() {
+        su - -c "sh /etc/profile && {{ teamcity_home }}/agents/{{ item.name }}/bin/agent.sh start" {{ teamcity_user }}
+}
+
+stop() {
+        su - -c "sh /etc/profile && {{ teamcity_home }}/agents/{{ item.name }}/bin/agent.sh stop force" {{ teamcity_user }}
+}
+
+status () {
+        su - -c "sh /etc/profile && {{ teamcity_home }}/agents/{{ item.name }}/bin/agent.sh status" {{ teamcity_user }}
+}
+
+restart() {
+        stop
+        sleep 5
+        start
+}
+
+case "$1" in 
+start)
+        start
+;;
+stop)
+        stop
+;;
+restart)
+        restart
+;;
+status)
+        status
+;;
+
+*)
+
+echo $"Usage: $0 {start|stop|restart|status}"
+
+esac
+

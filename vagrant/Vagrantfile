@@ -1,0 +1,38 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$createUsersScript = <<SCRIPT
+        useradd --uid 1100 -m -U -s /bin/bash aroot
+        echo 'aroot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/aroot && chmod 640 /etc/sudoers.d/aroot
+        echo 'aroot:aroot' | chpasswd
+        su aroot -c "mkdir -m 700 /home/aroot/.ssh"
+        usermod -a -G aroot vagrant
+SCRIPT
+
+$installAnsibleScript = <<SCRIPT
+    apt-get install software-properties-common
+    apt-add-repository ppa:ansible/ansible
+	apt-get update
+	apt-get install -y git ansible python-pip
+	pip install paramiko PyYAML jinja2 httplib2
+    echo 'localhost ansible_connection=local' > /etc/ansible/hosts
+SCRIPT
+
+Vagrant.configure(2) do |config|
+
+    config.vm.define "tc-agent1", primary: true do |a|
+        a.vm.box = "ubuntu/trusty64"
+        a.vm.network "private_network", ip: "10.0.0.2"
+        a.vm.hostname = "tc-agent1"
+		
+		a.vm.synced_folder "../sample-plays", "/opt/sampe-plays", mount_options: ["uid=1100,gid=1100,dmode=777,fmode=666"]
+		a.vm.synced_folder "provisioning", "/home/aroot/provisioning", mount_options: ["uid=1100,gid=1100,dmode=755,fmode=644"]
+    
+        a.vm.provider "virtualbox" do |vb|
+          vb.memory = 1024
+          vb.cpus = 1
+        end
+        a.vm.provision "shell", inline: $createUsersScript + $installAnsibleScript
+    end
+
+end

@@ -1,0 +1,133 @@
+---
+- name: Create TeamCity group
+  group: name={{ teamcity_group }}
+
+- name: Create TeamCity user
+  user: name={{ teamcity_user }} group={{ teamcity_group }} shell=/bin/bash home={{ teamcity_home }}
+
+- name: Configure TeamCity user sudo
+  template: >
+    src=tcity.sudo.j2
+    dest=/etc/sudoers.d/tcity
+    owner=root
+    group=root
+
+- name: Install packages
+  apt: name={{ item }} state=present
+  with_items:
+   - unzip
+   - openjdk-7-jdk
+
+- name: Ensure downloads dir exists
+  file: path={{ DOWNLOADS_DIR }} state=directory
+
+- name: Download TeamCity Agent
+  get_url: >
+    url=http://10.0.0.1:7080/update/buildAgent.zip
+    dest={{ DOWNLOADS_DIR }}/buildAgent.zip
+    timeout=30
+  when: teamcity_agents is defined
+  register: get_url_result
+  retries: 3
+  delay: 1
+  until: "'OK' in get_url_result.msg or 'file already exists' in get_url_result.msg"
+
+- name: Create agents dir
+  file: >
+    path={{ teamcity_home }}/agents/{{ item.name }}
+    state=directory
+    owner={{ teamcity_user }}
+    group={{ teamcity_group }}
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+
+- name: Extract agent
+  sudo_user: "{{ teamcity_user }}"
+  unarchive: >
+    src={{ DOWNLOADS_DIR }}/buildAgent.zip
+    dest={{ teamcity_home }}/agents/{{ item.name }}
+    creates={{ teamcity_home }}/agents/{{ item.name }}/service.properties
+    copy=no
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+
+- name: Make agent script executable
+  file: path={{ teamcity_home }}/agents/{{ item.name }}/bin/agent.sh mode=744
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+
+- name: configure agent work dir
+  lineinfile: >
+    dest={{ teamcity_home }}/agents/{{ item.name }}/conf/buildAgent.properties
+    create=yes
+    line=workDir=../work
+    state=present
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+
+- name: configure agent temp dir
+  lineinfile: >
+    dest={{ teamcity_home }}/agents/{{ item.name }}/conf/buildAgent.properties
+    create=yes
+    line=tempDir=../temp
+    state=present
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+
+- name: configure agent system dir
+  lineinfile: >
+    dest={{ teamcity_home }}/agents/{{ item.name }}/conf/buildAgent.properties
+    create=yes
+    line=systemDir=../system
+    state=present
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+
+- name: configure agent server
+  lineinfile: >
+    dest={{ teamcity_home }}/agents/{{ item.name }}/conf/buildAgent.properties
+    create=yes
+    line=serverUrl=http://10.0.0.1:7080/
+    state=present
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+
+- name: configure agent port
+  lineinfile: >
+    dest={{ teamcity_home }}/agents/{{ item.name }}/conf/buildAgent.properties
+    create=yes
+    line=ownPort={{ item.port }}
+    regexp=^ownPort=.*$
+    state=present
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+
+- name: configure agent name
+  lineinfile: >
+    dest={{ teamcity_home }}/agents/{{ item.name }}/conf/buildAgent.properties
+    create=yes
+    line=name={{ item.name }}
+    state=present
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+  
+- name: Install agent service script
+  template: >
+    src=etc_init.d_tcagent.j2
+    dest=/etc/init.d/tcagent_{{ item.name }}
+    owner=root
+    group=root
+    mode=755
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+
+- name: Enable agent services
+  service: name=tcagent_{{ item.name }} enabled=yes
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+
+- name: Start agent services
+  service: name=tcagent_{{ item.name }} state=started
+  with_items: teamcity_agents
+  when: teamcity_agents is defined
+

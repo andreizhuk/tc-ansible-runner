@@ -7,3 +7,4 @@ target/
 *.iml
 *.releaseBackup
 release.properties
+.vagrant

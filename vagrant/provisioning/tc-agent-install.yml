@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  sudo: yes
+  vars:
+   teamcity_group: tcity
+   teamcity_user: tcity
+   teamcity_home: /home/tcity
+   DOWNLOADS_DIR: /opt/downloads
+   teamcity_agents:
+    - name: kia
+      port: 9090
+  roles:
+   - tc-agent-install
