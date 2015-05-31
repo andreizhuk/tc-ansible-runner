@@ -38,6 +38,7 @@
       </pluginManagement>
   </build>
   <modules>
+    <module>ansible-log-processor</module>
     <module>ansible-runner-server</module>
     <module>ansible-runner-agent</module>
     <module>ansible-runner-common</module>

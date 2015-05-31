@@ -71,7 +71,7 @@ public class AnsibleRunService extends BuildServiceAdapter {
     @Override
     public List<ProcessListener> getListeners() {
         List<ProcessListener> listeners = new ArrayList<ProcessListener>(super.getListeners());
-        listeners.add(new AnsibleOutputListener(getBuild(), artifactsWatcher));
+        listeners.add(new AnsibleOutputListener(getBuild(), getRunnerContext().getId(), artifactsWatcher));
         return listeners;
     }
 

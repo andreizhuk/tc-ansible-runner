@@ -15,5 +15,11 @@ public class AnsibleRunnerConstants {
     public static final String EXECUTABLE_KEY = "elinyo_ar_exe";
     
     public static final String OPTIONS_KEY = "elinyo_ar_options";
+    
+    public static final String ARTIFACTS_TMP_DIR_KEY = "elinyo_ar_artifacts_tmp";
+    
+    public static final String ARTIFACTS_BASE_DIR = ".teamcity/ansible-run";
+    
+    public static final String ARTIFACTS_JSON_REPORT = "ansible-run-report.json";
 
 }

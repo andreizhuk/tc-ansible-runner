@@ -4,4 +4,5 @@
 
 <beans default-autowire="constructor">
     <bean class="ee.elinyo.teamcity.plugins.ansible.agent.AnsibleRunServiceFactory"/>
+    <bean class="ee.elinyo.teamcity.plugins.ansible.agent.AnsibleReportArtifatcsProvider"/>
 </beans>
