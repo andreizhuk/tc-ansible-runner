@@ -9,6 +9,7 @@ public final class AnsibleLogUtils {
     private static final String GATHER_FACT_START = "GATHERING FACTS";
     private static final String FATAL_START = "FATAL:";
     private static final String RECAP_START = "PLAY RECAP";
+    private static final String BUILD_META_START = "AR_BUILD_META:";
     
     public static boolean isPlayStart(String line) {
         return line.startsWith(PLAY_START);
@@ -40,6 +41,14 @@ public final class AnsibleLogUtils {
     
     public static boolean isFatal(String line) {
         return line.startsWith(FATAL_START);
+    }
+    
+    public static boolean isBuildMeta(String line) {
+        return line.startsWith(BUILD_META_START);
+    }
+    
+    public static String getBuildMetaMessage(String key, String value) {
+        return BUILD_META_START + key + ":" + value;
     }
 
 }

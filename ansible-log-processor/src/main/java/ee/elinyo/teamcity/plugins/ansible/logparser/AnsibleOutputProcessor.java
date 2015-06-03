@@ -43,6 +43,8 @@ public class AnsibleOutputProcessor {
             playbook.setFatalMessage(line);
         } else if (AnsibleLogUtils.isPlaySkip(line)) {
             currentPlay.setSkipped(true);
+        } else if (AnsibleLogUtils.isBuildMeta(line)) {
+            playbook.addBuildMeta(line);
         } else if (currentContext != null) {
             currentContext.process(line);
         }

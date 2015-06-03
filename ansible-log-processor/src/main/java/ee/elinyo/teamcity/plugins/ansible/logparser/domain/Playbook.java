@@ -1,16 +1,30 @@
 package ee.elinyo.teamcity.plugins.ansible.logparser.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Playbook {
+    
+    private static final Pattern BUILD_META_LINE_PATTERN = Pattern.compile("AR_BUILD_META:(.+):(.+)");
 
     private long startedAt;
     private long finishedAt;
     private List<Play> plays = new ArrayList<Play>();
     private List<HostRecap> recaps = new ArrayList<HostRecap>();
     private String fatalMessage;
+    private Map<String, String> buildMeta = new HashMap<String, String>();
 
+    public void addBuildMeta(String line) {
+        Matcher matcher = BUILD_META_LINE_PATTERN.matcher(line);
+        if (matcher.find()) {
+            buildMeta.put(matcher.group(1), matcher.group(2));
+        }
+    }
+    
     public long getStartedAt() {
         return startedAt;
     }
@@ -49,6 +63,14 @@ public class Playbook {
 
     public void setFatalMessage(String fatalMessage) {
         this.fatalMessage = fatalMessage;
+    }
+
+    public Map<String, String> getBuildMeta() {
+        return buildMeta;
+    }
+
+    public void setBuildMeta(Map<String, String> buildMeta) {
+        this.buildMeta = buildMeta;
     }
 
 }

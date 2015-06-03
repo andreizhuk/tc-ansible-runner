@@ -62,7 +62,7 @@ public class AnsibleRunService extends BuildServiceAdapter {
     }
 
     private ProgramCommandLine makeCustomScriptCommand(AnsibleRunConfig config) throws RunBuildException {
-        String workingDir = getWorkingDirectory().getPath();
+       // String workingDir = getWorkingDirectory().getPath();
         LOG.warn("Not Implemented");
         throw new RunBuildException("Ansible customs script is not imlemented");
     }
@@ -71,7 +71,7 @@ public class AnsibleRunService extends BuildServiceAdapter {
     @Override
     public List<ProcessListener> getListeners() {
         List<ProcessListener> listeners = new ArrayList<ProcessListener>(super.getListeners());
-        listeners.add(new AnsibleOutputListener(getBuild(), getRunnerContext().getId(), artifactsWatcher));
+        listeners.add(new AnsibleOutputListener(getBuild(), getRunnerContext(), artifactsWatcher));
         return listeners;
     }
 

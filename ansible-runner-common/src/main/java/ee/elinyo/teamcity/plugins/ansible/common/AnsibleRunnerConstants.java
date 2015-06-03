@@ -21,5 +21,11 @@ public class AnsibleRunnerConstants {
     public static final String ARTIFACTS_BASE_DIR = ".teamcity/ansible-run";
     
     public static final String ARTIFACTS_JSON_REPORT = "ansible-run-report.json";
+    
+    public static final String RUNNER_ID_META_KEY = "tcRunnerId";
+    
+    public static final String STEP_NAME_META_KEY = "tcStepName";
+    
+    public static final String EXIT_CODE_META_KEY = "tcExitCode";
 
 }
