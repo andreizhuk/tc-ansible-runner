@@ -14,6 +14,8 @@ public class AnsibleOutputProcessor {
     private Play currentPlay;
     private Task currentTask;
     
+    private int taskCounter = 0;
+    
     public void onLine(String line) {
         if (!isIgnore(line)) {
             Pair<Long, String> undecorated = DateDecorator.undecorate(line);
@@ -65,6 +67,7 @@ public class AnsibleOutputProcessor {
     
     private void nextTask(String line, long date) {
         Task newTask = Task.fromOutputLine(line, date);
+        newTask.setOrder(taskCounter++);
         if (currentTask != null) {
             currentTask.setFinishedAt(date);
         }

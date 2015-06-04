@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class VerboseMessage {
     
-    private static Pattern VERBOSE_MESSAGE_LINE_PATTERN = Pattern
+    private static final Pattern VERBOSE_MESSAGE_LINE_PATTERN = Pattern
             .compile("^<(.+)>\\s+(.+)?");
 
     private String hostName;

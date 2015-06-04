@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class HostRecap {
     
-    private static Pattern HOST_RECAP_LINE_PATTERN = Pattern
+    private static final Pattern HOST_RECAP_LINE_PATTERN = Pattern
             .compile("^([^:\\s]+)\\s*:\\s+ok=(\\d+)\\s+changed=(\\d+)\\s+unreachable=(\\d+)\\s+failed=(\\d+).*");
 
     private String hostname;

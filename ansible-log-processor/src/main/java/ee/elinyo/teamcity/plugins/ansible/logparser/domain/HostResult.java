@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class HostResult {
     
-    private static Pattern HOST_RESULT_FIRST_LINE_PATTERN = Pattern
+    private static final Pattern HOST_RESULT_FIRST_LINE_PATTERN = Pattern
             .compile("^([a-z]+):\\s+\\Q[\\E(.+)\\Q]\\E\\s*(.+)?");
 
     private String hostName;

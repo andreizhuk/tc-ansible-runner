@@ -7,13 +7,14 @@ import java.util.regex.Pattern;
 
 public class Task {
     
-    private static Pattern TASK_FIRST_LINE_PATTERN = Pattern
+    private static final Pattern TASK_FIRST_LINE_PATTERN = Pattern
             .compile("^(TASK|NOTIFIED):\\s+\\Q[\\E(.+)\\Q]\\E");
 
     private long startedAt;
     private long finishedAt;
     private String name;
     private boolean notified;
+    private int order;
     private List<HostResult> hosts = new ArrayList<HostResult>();
     private List<VerboseMessage> verbose = new ArrayList<VerboseMessage>();
 
@@ -76,6 +77,13 @@ public class Task {
     public void setVerbose(List<VerboseMessage> verbose) {
         this.verbose = verbose;
     }
-    
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
 
 }
