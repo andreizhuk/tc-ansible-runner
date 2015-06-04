@@ -1,2 +1,11 @@
 sample1 ansible_connection=local
 sample2 ansible_connection=local
+another1 ansible_connection=local
+misc1 ansible_connection=local
+
+[samples]
+sample1
+sample2
+
+[others]
+another1

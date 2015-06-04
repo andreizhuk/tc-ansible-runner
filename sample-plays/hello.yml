@@ -1,7 +1,15 @@
 ---
 - hosts: all
   tasks:
-   - ping:
-   - setup:
    - debug: var=version
    - debug: msg="test {{ test }}"
+   
+- hosts: missing
+  tasks:
+   - setup:
+   
+- hosts: others
+  tasks:
+   - setup:
+  roles:
+   - arole 

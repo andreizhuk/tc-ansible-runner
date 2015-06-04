@@ -1,0 +1,35 @@
+---
+- name: task with name
+  command: whoami
+  register: result
+  notify:
+   - a handler
+  
+- command: echo {{ item }}
+  changed_when: false
+  with_items:
+   - hello
+   - runner
+   - plugin
+   
+- name: to be skipped
+  command: whoami
+  when: false
+  
+- name: randomize
+  debug: msg={{ item }}
+  with_random_choice:
+     - "go through the door"
+     - "drink from the goblet"
+     - "press the red button"
+     - "do nothing"
+     
+- name: ignored fail
+  file: dest=/opt/newdir state=directory
+  ignore_errors: true
+  
+- name: do until retry
+  file: dest=/home/tcity/retries state=directory
+  register: touch_result
+  until: not touch_result.changed
+  retries: 3
