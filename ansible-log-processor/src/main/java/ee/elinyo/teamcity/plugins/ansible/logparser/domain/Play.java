@@ -22,6 +22,7 @@ public class Play {
         if (matcher.find()) {
             p = new Play();
             p.setName(matcher.group(1));
+            p.startedAt = startedAt;
         }
         return p;
     }
