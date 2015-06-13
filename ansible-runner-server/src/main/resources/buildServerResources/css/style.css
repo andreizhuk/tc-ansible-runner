@@ -22,6 +22,10 @@
     font-size: 100%;
 }
 
+.ar-play-container .ar-summary:hover {
+	background-color: #bbbbbb;
+}
+
 .ar-summary .ar-name {
 	font-weight: bold;
 }

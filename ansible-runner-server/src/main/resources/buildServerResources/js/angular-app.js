@@ -134,13 +134,16 @@ ARReportApp.controller('arRootCtrl', ['$scope','$http', 'PlaybookWrapperService'
 }]);
 
 ARReportApp.controller('arPlayCtrl', ['$scope', function($scope) {
-	$scope.expandState = 'expanded';
+	$scope.isSkipped = function(play) {
+		return play.tasks.length == 0;
+	}
 	$scope.toggle = function() {
 		$scope.expandState = $scope.expandState === 'expanded' ? 'collapsed' : 'expanded';
 	}
 	$scope.$on('expand-toggle', function(event, newState) {
 		$scope.expandState = newState;
 	});
+	
 }]);
 
 ARReportApp.controller('arRunnerStepController', ['$scope', function($scope) {
