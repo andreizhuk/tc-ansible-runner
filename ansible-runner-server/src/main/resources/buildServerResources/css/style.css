@@ -30,6 +30,16 @@
 	font-weight: bold;
 }
 
+.ar-recap {
+}
+
+.ar-summary .ar-summary-col {
+	width: 7em;
+	margin-right: 2px;
+	margin-left: 2px;
+	float: right;
+}
+
 .ar-ok {
 	color: green;
 }
