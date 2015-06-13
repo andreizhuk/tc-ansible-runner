@@ -1,4 +1,5 @@
 <jsp:useBean id="buildData" type="jetbrains.buildServer.serverSide.SBuild" scope="request"/>
+<link href="/plugins/ansible-runner/css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 var AnsibleRunReport = {
 	buildId: '${buildData.buildId}'

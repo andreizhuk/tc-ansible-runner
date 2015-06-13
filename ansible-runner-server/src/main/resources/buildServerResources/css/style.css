@@ -1,1 +1,43 @@
-# ansible css
+/* ansible-runner css */
+.ar-step-container {
+	margin-bottom: 5px;
+	background-color: #000;
+    color: #fff;
+}
+
+.ar-nested-level {
+    margin-left: 20px;
+}
+
+.ar-all-recap {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.ar-step-container > .ar-summary {
+	color: #3f3f3f;
+	background-color: #ebedef;
+	padding: 4px;
+    color: #3f3f3f;
+    font-size: 100%;
+}
+
+.ar-summary .ar-name {
+	font-weight: bold;
+}
+
+.ar-ok {
+	color: green;
+}
+
+.ar-changed {
+    color: yellow;
+}
+
+.ar-failed, .ar-fatal {
+    color: red;
+}
+
+.ar-skipping {
+    color: cyan;
+}
