@@ -146,7 +146,17 @@ ARReportApp.controller('arPlayCtrl', ['$scope', function($scope) {
 	
 }]);
 
-ARReportApp.controller('arRunnerStepController', ['$scope', function($scope) {
+ARReportApp.controller('arRunnerStepCtrl', ['$scope', function($scope) {
+	$scope.expandState = 'expanded';
+	$scope.toggle = function() {
+		$scope.expandState = $scope.expandState === 'expanded' ? 'collapsed' : 'expanded';
+	}
+	$scope.$on('expand-toggle', function(event, newState) {
+		$scope.expandState = newState;
+	});
+}]);
+
+ARReportApp.controller('arRecapCtrl', ['$scope', function($scope) {
 	$scope.expandState = 'expanded';
 	$scope.toggle = function() {
 		$scope.expandState = $scope.expandState === 'expanded' ? 'collapsed' : 'expanded';

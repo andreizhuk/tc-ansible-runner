@@ -34,15 +34,11 @@
         </span>
     </div>
     <div class="ar-all-recap">Total Recap: ok={{ allRecap.ok }}, changed={{ allRecap.changed }}, unreachable={{ allRecap.unreachable }}, failed={{ allRecap.failed }}</div>
-    <div data-ng-repeat="pb in playbooks" class="ar-step-container" data-ng-controller="arRunnerStepController">
+    <div data-ng-repeat="pb in playbooks" class="ar-step-container" data-ng-controller="arRunnerStepCtrl">
         <div class="ar-summary">
             <span title="Click to show/hide plays" class="handle handle_{{ expandState }}" ng-click="toggle()">&nbsp;</span>
-            <span class="ar-name">{{ pb.buildMeta.tcStepName }}:</span>
+            <span class="ar-name">{{ pb.buildMeta.tcStepName }}</span>
             <span class="ar-summary-col">{{ pb.duration }}s</span>
-            <span class="ar-summary-col" ng-class="{'ar-failed': pb.totalRecap.failed > 0}">failed={{ pb.totalRecap.failed }}</span>
-            <span class="ar-summary-col" ng-class="{'ar-failed': pb.totalRecap.unreachable > 0}">unreachable={{ pb.totalRecap.unreachable }}</span>
-            <span class="ar-summary-col" ng-class="{'ar-changed': pb.totalRecap.changed > 0}">changed={{ pb.totalRecap.changed }}</span>
-            <span class="ar-summary-col" ng-class="{'ar-ok': pb.totalRecap.ok > 0}">ok={{ pb.totalRecap.ok }}</span>
         </div>
         <div class="ar-nested-level" data-ng-include="'/plugins/ansible-runner/html/report-playbook-ng.tpl'" ng-show="expandState === 'expanded'"></div>
     </div>

@@ -18,19 +18,17 @@
 	color: #3f3f3f;
 	background-color: #ebedef;
 	padding: 4px;
-    color: #3f3f3f;
     font-size: 100%;
 }
 
-.ar-play-container .ar-summary:hover {
+.ar-play-container .ar-summary:hover, .ar-recap-container .ar-summary:hover {
 	background-color: #bbbbbb;
+	color: #3f3f3f;
+	font-weight: bold;
 }
 
 .ar-summary .ar-name {
 	font-weight: bold;
-}
-
-.ar-recap {
 }
 
 .ar-summary .ar-summary-col {
@@ -38,6 +36,16 @@
 	margin-right: 2px;
 	margin-left: 2px;
 	float: right;
+}
+
+.ar-recap-container .ar-summary span:first-of-type {
+	width: 400px;
+	display: inline-block;
+}
+
+.ar-recap-container .ar-summary span {
+	min-width: 8em;
+	display: inline-block;
 }
 
 .ar-ok {

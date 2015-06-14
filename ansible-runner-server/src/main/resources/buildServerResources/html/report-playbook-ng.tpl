@@ -1,6 +1,21 @@
+<div data-ng-controller="arRecapCtrl">
+    <div class="ar-summary">
+        <span title="Click to show/hide hosts" class="handle handle_{{ expandState }}" ng-click="toggle()"></span>
+        <span class="ar-name">RECAP</span>
+    </div>
+    <div ng-show="expandState === 'expanded'" class="ar-nested-level ar-recap-container">
+        <div class="ar-summary" data-ng-repeat="host in pb.recaps">
+            <span>{{ host.hostName }}</span>:
+            <span ng-class="{'ar-ok': host.statusSummary.ok > 0}">ok={{ host.statusSummary.ok || 0 }}</span>
+            <span ng-class="{'ar-changed': host.statusSummary.changed > 0}">changed={{ host.statusSummary.changed || 0 }}</span>
+            <span ng-class="{'ar-failed': host.statusSummary.unreachable > 0}">unreachable={{ host.statusSummarys.unreachable || 0 }}</span>
+            <span ng-class="{'ar-failed': host.statusSummary.failed > 0}">failed={{ host.statusSummary.failed || 0 }}</span>
+        </div>
+    </div>
+</div>
 <div data-ng-repeat="play in pb.plays" data-ng-controller="arPlayCtrl" class="ar-play-container">
   <div class="ar-summary">
-      <span title="Click to show/hide taks" class="handle handle_{{ expandState }}" ng-click="toggle()"></span>
+      <span title="Click to show/hide tasks" class="handle handle_{{ expandState }}" ng-click="toggle()"></span>
       <span class="ar-name">PLAY [{{ play.name }}]</span>
       <span class="ar-summary-col">{{ play.duration }}s</span>
       <span class="ar-summary-col" ng-class="{'ar-failed': play.hostStatus.failed > 0}">failed={{ play.hostStatus.failed || 0 }}</span>
