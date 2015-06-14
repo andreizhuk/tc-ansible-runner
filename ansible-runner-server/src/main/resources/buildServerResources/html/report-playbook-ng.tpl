@@ -11,7 +11,7 @@
             <span>{{ host.hostName }}</span>:
             <span ng-class="{'ar-ok': host.statusSummary.ok > 0}">ok={{ host.statusSummary.ok || 0 }}</span>
             <span ng-class="{'ar-changed': host.statusSummary.changed > 0}">changed={{ host.statusSummary.changed || 0 }}</span>
-            <span ng-class="{'ar-failed': host.statusSummary.unreachable > 0}">unreachable={{ host.statusSummarys.unreachable || 0 }}</span>
+            <span ng-class="{'ar-failed': host.statusSummary.unreachable > 0}">unreachable={{ host.statusSummary.unreachable || 0 }}</span>
             <span ng-class="{'ar-failed': host.statusSummary.failed > 0}">failed={{ host.statusSummary.failed || 0 }}</span>
         </div>
     </div>
