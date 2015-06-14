@@ -6,6 +6,11 @@
     <div class="actionBar">
         <span class="actionBarRight">
             <span class="nowrap">
+                <input value="" id="factsToggle" name="factsToggle" type="checkBox" data-ng-model="search.showFacts"/>
+                <label for="factsToggle">Show facts</label>
+            </span>
+            <span class="nowrap"><label for="factsToggle">|</label></span>
+            <span class="nowrap">
                 <a data-ng-click="toggleExpand()" href="">
                     {{ expandState === 'expanded' ? 'Collapse' : 'Expand' }} All
                 </a>

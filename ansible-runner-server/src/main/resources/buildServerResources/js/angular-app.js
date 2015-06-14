@@ -91,7 +91,8 @@ ARReportApp.controller('arRootCtrl', ['$scope','$http', 'PlaybookWrapperService'
 	$scope.search = {
 		task: "",
 		host: "",
-		status: ""
+		status: "",
+		showFacts: false
 	}
 	var url = "/httpAuth/app/rest/builds/id:"
 		+ AnsibleRunReport.buildId
@@ -160,7 +161,7 @@ ARReportApp.controller('arExpandCollapseCtrl', ['$scope', function($scope) {
 }]);
 
 ARReportApp.controller('arTaskCtrl', ['$scope', function($scope) {
-	$scope.expandState = 'collapsed';
+	$scope.expandState = $scope.task.hostStatus.failed > 0 || $scope.task.hostStatus.fatal > 0 ? 'expanded' : 'collapsed';
 	$scope.toggle = function() {
 		$scope.expandState = $scope.expandState === 'expanded' ? 'collapsed' : 'expanded';
 	}
