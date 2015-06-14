@@ -3,7 +3,6 @@ package ee.elinyo.teamcity.plugins.ansible.agent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import jetbrains.buildServer.agent.AgentLifeCycleListener;
 import jetbrains.buildServer.agent.AgentRunningBuild;
 import jetbrains.buildServer.agent.BuildFinishedStatus;
 import jetbrains.buildServer.agent.artifacts.ArtifactsWatcher;
+import jetbrains.buildServer.messages.serviceMessages.BuildStatisticValue;
 import jetbrains.buildServer.util.EventDispatcher;
 
 import org.jetbrains.annotations.NotNull;
@@ -20,13 +20,15 @@ import com.intellij.openapi.diagnostic.Logger;
 
 import ee.elinyo.teamcity.plugins.ansible.common.AnsibleRunnerConstants;
 import ee.elinyo.teamcity.plugins.ansible.logparser.AnsibleOutputProcessor;
+import ee.elinyo.teamcity.plugins.ansible.logparser.domain.Play;
 import ee.elinyo.teamcity.plugins.ansible.logparser.domain.Playbook;
+import ee.elinyo.teamcity.plugins.ansible.logparser.domain.Task;
 
 public class AnsibleReportArtifatcsProvider extends AgentLifeCycleAdapter {
     
     private static final Logger LOG = Logger.getInstance(AnsibleReportArtifatcsProvider.class.getName());
     
-    private static final String ACTIVITY_NAME = "Genereting ansible run report...";
+    private static final String ACTIVITY_NAME = "Processing ansible output";
     private static final String ACTIVITY_TYPE = "ansible_run_report";
     
     private ArtifactsWatcher artifactsWatcher;
@@ -58,23 +60,29 @@ public class AnsibleReportArtifatcsProvider extends AgentLifeCycleAdapter {
     
     private void generateReport(AgentRunningBuild build, File[] rawFiles) {
         build.getBuildLogger().activityStarted(ACTIVITY_NAME, ACTIVITY_TYPE);
-        List<Playbook> playbooks = new ArrayList<Playbook>();
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("Ansible reports will be generated for the following raw files: ");
-            for (File f : rawFiles) {
-                LOG.debug(f.getAbsolutePath());
+        try {
+            build.getBuildLogger().message("Generating ansible report artifacts...");
+            List<Playbook> playbooks = new ArrayList<Playbook>();
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Ansible reports will be generated for the following raw files: ");
+                for (File f : rawFiles) {
+                    LOG.debug(f.getAbsolutePath());
+                }
             }
-        }
-        for (File f: rawFiles) {
-            Playbook p = getPlaybook(f);
-            if (p == null) {
-                build.getBuildLogger().warning("Failed to generate report. Check agent logs for more details");
-            } else {
-                playbooks.add(p);
+            for (File f: rawFiles) {
+                Playbook p = getPlaybook(f);
+                if (p == null) {
+                    build.getBuildLogger().warning("Failed to generate report. Check agent logs for more details");
+                } else {
+                    playbooks.add(p);
+                }
             }
+            provideArtifacts(playbooks, build);
+            build.getBuildLogger().message("Publishing statistics...");
+            publishStats(playbooks, build);
+        } finally {
+            build.getBuildLogger().activityFinished(ACTIVITY_NAME, ACTIVITY_TYPE);
         }
-        provideArtifacts(playbooks, build);
-        build.getBuildLogger().activityFinished(ACTIVITY_NAME, ACTIVITY_TYPE);
     }
     
     private void provideArtifacts(List<Playbook> playbooks, AgentRunningBuild build) {
@@ -82,10 +90,26 @@ public class AnsibleReportArtifatcsProvider extends AgentLifeCycleAdapter {
         try {
             tmpReport.createNewFile();
             ReportBuilder.buildJsonReport(playbooks, tmpReport);
+            build.getBuildLogger().message("Uploading artifact...");
             artifactsWatcher.addNewArtifactsPath(tmpReport.getAbsolutePath() + "=>" + AnsibleRunnerConstants.ARTIFACTS_BASE_DIR);
         } catch (Exception e) {
-            LOG.error("Failed to create a file to wirte ansible run report", e);
+            LOG.error("Failed to create a file to write ansible run report", e);
             build.getBuildLogger().warning("Failed to generate report. Check agent logs for more details");
+        }
+    }
+    
+    private void publishStats(List<Playbook> playbooks, AgentRunningBuild build) {
+        //TODO find a way to publish more nice looking labels
+        for (Playbook pb : playbooks) {
+            String pbKeyPrefix = "AR_PB_" + pb.getBuildMeta().get(AnsibleRunnerConstants.RUNNER_ID_META_KEY);
+            for (Play p : pb.getPlays()) {
+                String playKeyPrefix = pbKeyPrefix + "_" + p.getName() + "_";
+                for (Task t: p.getTasks()) {
+                    int duration = Long.valueOf(t.getFinishedAt() - t.getStartedAt()).intValue();
+                    String statKey = playKeyPrefix + t.getName() + "_TIME";
+                    build.getBuildLogger().message(new BuildStatisticValue(statKey, duration).asString());
+                }
+            }
         }
     }
     
