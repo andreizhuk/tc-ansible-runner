@@ -101,7 +101,7 @@ public class AnsibleReportArtifatcsProvider extends AgentLifeCycleAdapter {
             while( (strLine = br.readLine()) != null){
                 logProcessor.onLine(strLine);
             }
-            result = logProcessor.getResults();
+            result = logProcessor.finish();
         } catch (Exception e) {
             LOG.error("Failed to generate ansible run report", e);
         } 
