@@ -12,6 +12,8 @@
    - runner
    - plugin
    
+- meta: flush_handlers
+   
 - name: to be skipped
   command: whoami
   when: false
@@ -27,6 +29,8 @@
 - name: ignored fail
   file: dest=/opt/newdir state=directory
   ignore_errors: true
+
+- include_vars: vars.yml
   
 - name: do until retry
   file: dest=/home/tcity/retries state=directory
