@@ -4,7 +4,7 @@
   <parent>
     <artifactId>ansible-runner</artifactId>
     <groupId>ee.elinyo.teamcity.plugins</groupId>
-    <version>1.0.0</version>
+    <version>1.1-SNAPSHOT</version>
   </parent>
   <artifactId>ansible-runner-agent</artifactId>
   <packaging>jar</packaging>
@@ -16,14 +16,14 @@
     <dependency>
       <groupId>ee.elinyo.teamcity.plugins</groupId>
       <artifactId>ansible-runner-common</artifactId>
-      <version>1.0.0</version>
+      <version>1.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     
     <dependency>
       <groupId>ee.elinyo.teamcity.plugins</groupId>
       <artifactId>ansible-log-processor</artifactId>
-      <version>1.0.0</version>
+      <version>1.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
 
