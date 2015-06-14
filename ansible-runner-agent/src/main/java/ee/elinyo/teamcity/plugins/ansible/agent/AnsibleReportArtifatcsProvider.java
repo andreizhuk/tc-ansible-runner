@@ -11,7 +11,6 @@ import jetbrains.buildServer.agent.AgentLifeCycleListener;
 import jetbrains.buildServer.agent.AgentRunningBuild;
 import jetbrains.buildServer.agent.BuildFinishedStatus;
 import jetbrains.buildServer.agent.artifacts.ArtifactsWatcher;
-import jetbrains.buildServer.messages.serviceMessages.BuildStatisticValue;
 import jetbrains.buildServer.util.EventDispatcher;
 
 import org.jetbrains.annotations.NotNull;
@@ -20,9 +19,7 @@ import com.intellij.openapi.diagnostic.Logger;
 
 import ee.elinyo.teamcity.plugins.ansible.common.AnsibleRunnerConstants;
 import ee.elinyo.teamcity.plugins.ansible.logparser.AnsibleOutputProcessor;
-import ee.elinyo.teamcity.plugins.ansible.logparser.domain.Play;
 import ee.elinyo.teamcity.plugins.ansible.logparser.domain.Playbook;
-import ee.elinyo.teamcity.plugins.ansible.logparser.domain.Task;
 
 public class AnsibleReportArtifatcsProvider extends AgentLifeCycleAdapter {
     
@@ -78,8 +75,6 @@ public class AnsibleReportArtifatcsProvider extends AgentLifeCycleAdapter {
                 }
             }
             provideArtifacts(playbooks, build);
-            build.getBuildLogger().message("Publishing statistics...");
-            publishStats(playbooks, build);
         } finally {
             build.getBuildLogger().activityFinished(ACTIVITY_NAME, ACTIVITY_TYPE);
         }
@@ -97,22 +92,7 @@ public class AnsibleReportArtifatcsProvider extends AgentLifeCycleAdapter {
             build.getBuildLogger().warning("Failed to generate report. Check agent logs for more details");
         }
     }
-    
-    private void publishStats(List<Playbook> playbooks, AgentRunningBuild build) {
-        //TODO find a way to publish more nice looking labels
-        for (Playbook pb : playbooks) {
-            String pbKeyPrefix = "AR_PB_" + pb.getBuildMeta().get(AnsibleRunnerConstants.RUNNER_ID_META_KEY);
-            for (Play p : pb.getPlays()) {
-                String playKeyPrefix = pbKeyPrefix + "_" + p.getName() + "_";
-                for (Task t: p.getTasks()) {
-                    int duration = Long.valueOf(t.getFinishedAt() - t.getStartedAt()).intValue();
-                    String statKey = playKeyPrefix + t.getName() + "_TIME";
-                    build.getBuildLogger().message(new BuildStatisticValue(statKey, duration).asString());
-                }
-            }
-        }
-    }
-    
+
     private Playbook getPlaybook(File rawLog) {
         AnsibleOutputProcessor logProcessor = new AnsibleOutputProcessor();
         Playbook result = null;
