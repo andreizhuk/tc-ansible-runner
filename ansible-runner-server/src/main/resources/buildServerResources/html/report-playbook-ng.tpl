@@ -1,7 +1,10 @@
 <div data-ng-controller="arRecapCtrl">
-    <div class="ar-summary">
+    <div class="ar-summary ar-failed" data-ng-if="pb.errorMessage">
+        {{ pb.errorMessage }}
+    </div>
+    <div class="ar-summary" data-ng-if="pb.recaps.length > 0">
         <span title="Click to show/hide hosts" class="handle handle_{{ expandState }}" ng-click="toggle()"></span>
-        <span class="ar-name">RECAP</span>
+        <span class="ar-name">PLAY RECAP</span>
     </div>
     <div ng-show="expandState === 'expanded'" class="ar-nested-level ar-recap-container">
         <div class="ar-summary" data-ng-repeat="host in pb.recaps">

@@ -5,6 +5,10 @@
     color: #fff;
 }
 
+.ar-step-container > .ar-nested-level {
+	font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace;
+}
+
 .ar-nested-level {
     margin-left: 20px;
 }
