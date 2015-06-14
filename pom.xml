@@ -34,9 +34,24 @@
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.2</version>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<releaseProfiles>releases</releaseProfiles>
+				</configuration>
+			</plugin>
           </plugins>
       </pluginManagement>
   </build>
+  <scm>
+	<connection>scm:git:git@github.com:andreizhuk/tc-ansible-runner.git</connection>	
+	<developerConnection>scm:git:git@github.com:andreizhuk/tc-ansible-runner.git</developerConnection>
+	<url>https://github.com/andreizhuk/tc-ansible-runner</url>
+  </scm>
   <modules>
     <module>ansible-log-processor</module>
     <module>ansible-runner-server</module>
