@@ -10,7 +10,7 @@ public class HostRecap {
     private static final Pattern HOST_RECAP_LINE_PATTERN = Pattern
             .compile("^([^:\\s]+)\\s*:\\s+ok=(\\d+)\\s+changed=(\\d+)\\s+unreachable=(\\d+)\\s+failed=(\\d+).*");
 
-    private String hostname;
+    private String hostName;
     private Map<String, Integer> statusSummary = new HashMap<String, Integer>();
     
     public static HostRecap fromOutputLine(String line) {
@@ -18,7 +18,7 @@ public class HostRecap {
         HostRecap hr = null;
         if (matcher.find()) {
             hr = new HostRecap();
-            hr.setHostname(matcher.group(1));
+            hr.hostName = matcher.group(1);
             hr.statusSummary.put("ok", Integer.valueOf(matcher.group(2)));
             hr.statusSummary.put("changed", Integer.valueOf(matcher.group(3)));
             hr.statusSummary.put("unreachable", Integer.valueOf(matcher.group(4)));
@@ -27,12 +27,12 @@ public class HostRecap {
         return hr;
     }
     
-    public String getHostname() {
-        return hostname;
+    public String getHostName() {
+        return hostName;
     }
 
-    public void setHostname(String hostname) {
-        this.hostname = hostname;
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
     }
 
     public Map<String, Integer> getStatusSummary() {
