@@ -16,7 +16,7 @@ public class TestLogReader {
             while ((strLine = br.readLine()) != null) {
                 logProcessor.onLine(strLine);
             }
-            result = logProcessor.getResults();
+            result = logProcessor.finish();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

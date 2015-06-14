@@ -15,6 +15,7 @@ public class AnsibleOutputProcessor {
     private Task currentTask;
     
     private int taskCounter = 0;
+    private Pair<Long, String> lastLine;
     
     public void onLine(String line) {
         if (!isIgnore(line)) {
@@ -22,6 +23,7 @@ public class AnsibleOutputProcessor {
             if (undecorated != null && !isIgnore(undecorated.getRight())) {
                 process(undecorated.getLeft(), undecorated.getRight());
             }
+            lastLine = undecorated;
         }
     }
     
@@ -41,8 +43,8 @@ public class AnsibleOutputProcessor {
         } else if (AnsibleLogUtils.isRecapStart(line)) {
             recap(date);
             currentContext = new RecapContext(playbook);
-        } else if (AnsibleLogUtils.isFatal(line)) {
-            playbook.setFatalMessage(line);
+        } else if (AnsibleLogUtils.isError(line)) {
+            playbook.setErrorMessage(line);
         } else if (AnsibleLogUtils.isPlaySkip(line)) {
             currentPlay.setSkipped(true);
         } else if (AnsibleLogUtils.isBuildMeta(line)) {
@@ -90,7 +92,11 @@ public class AnsibleOutputProcessor {
         return line == null || line.trim().isEmpty() ;
     }
     
-    public Playbook getResults() {
+    public Playbook finish() {
+        //not properly started, e.g. due to syntax problems in ansible playbook
+        if (playbook.getFinishedAt() == 0) {
+            playbook.setFinishedAt(lastLine.getLeft());
+        }
         return playbook;
     }
 

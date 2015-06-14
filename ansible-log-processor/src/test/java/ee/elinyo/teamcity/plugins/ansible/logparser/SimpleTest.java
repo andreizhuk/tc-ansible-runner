@@ -14,5 +14,13 @@ public class SimpleTest {
         Assert.assertEquals(1, p.getPlays().size());
         Assert.assertEquals(4, p.getPlays().get(0).getTasks().size());
     }
+    
+    @Test
+    public void testErrorParser() {
+        Playbook p = TestLogReader.getPlaybook("/sample_error.log");
+        Assert.assertNotNull(p);
+        Assert.assertNotNull(p.getErrorMessage());
+        Assert.assertTrue(p.getFinishedAt() > 0);
+    }
 
 }

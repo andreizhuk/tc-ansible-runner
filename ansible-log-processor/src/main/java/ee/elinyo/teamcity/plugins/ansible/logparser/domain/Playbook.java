@@ -15,7 +15,7 @@ public class Playbook {
     private long finishedAt;
     private List<Play> plays = new ArrayList<Play>();
     private List<HostRecap> recaps = new ArrayList<HostRecap>();
-    private String fatalMessage;
+    private String errorMessage;
     private Map<String, String> buildMeta = new HashMap<String, String>();
 
     public void addBuildMeta(String line) {
@@ -57,12 +57,12 @@ public class Playbook {
         this.recaps = recaps;
     }
 
-    public String getFatalMessage() {
-        return fatalMessage;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
-    public void setFatalMessage(String fatalMessage) {
-        this.fatalMessage = fatalMessage;
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
     public Map<String, String> getBuildMeta() {
