@@ -27,7 +27,7 @@ public class AnsibleRunResultsTab extends ViewLogTab {
     }
 
     private String getTitle() {
-        return "Ansible Run";
+        return "Ansible Log";
     }
 
     private String getJspPage(PluginDescriptor descriptor) {

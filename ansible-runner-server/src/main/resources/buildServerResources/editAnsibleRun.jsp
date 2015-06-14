@@ -8,6 +8,7 @@
 
 <forms:workingDirectory/>
 
+<%-- Custom script selector 
 <tr>
   <th><label for="${bean.commandTypeKey}">Run:</label></th>
   <td>
@@ -18,12 +19,15 @@
     <span class="smallNote">You can use custom when ansible is executed via wrapper scripts</span>
   </td>
 </tr>
+--%>
+
+<props:hiddenProperty  name="${bean.commandTypeKey}" id="ar_command_type_option" value="${bean.executableCommandValue}"/>
 
 <tr id="ar_executable">
   <th><label for="${bean.executableKey}">Command:</label></th>
   <td>
     <props:textProperty name="${bean.executableKey}" className="longField"/>
-    <span class="smallNote">Absolute path to custom executable if not available on path</span>
+    <span class="smallNote">Absolute path to executable if not available on path</span>
   </td>
 </tr>
 
@@ -32,7 +36,7 @@
   <td>
     <props:textProperty name="${bean.playbookFileKey}" className="longField"/>
     <bs:vcsTree fieldId="${bean.playbookFileKey}"/>
-    <span class="smallNote">Path to the playbook file, absolute or relative to the checkout directory</span>
+    <span class="smallNote">Path to the playbook file, absolute or relative to the working directory</span>
   </td>
 </tr>
 
@@ -41,7 +45,7 @@
   <td>
     <props:textProperty name="${bean.inventoryFileKey}" className="longField"/>
     <bs:vcsTree fieldId="${bean.inventoryFileKey}"/>
-    <span class="smallNote">Path to the inventory file, absolute or relative to the checkout directory</span>
+    <span class="smallNote">Path to the inventory file, absolute or relative to the working directory</span>
   </td>
 </tr>
 
@@ -49,7 +53,7 @@
   <th><label for="${bean.optionsKey}">Options:</label></th>
   <td>
      <props:textProperty name="${bean.optionsKey}" className="longField"/>
-     <span class="smallNote">Command line options: inventory, user, etc.</span>
+     <span class="smallNote">Command line options: user, tags etc.</span>
   </td>
 </tr>
 
