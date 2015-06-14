@@ -1,4 +1,4 @@
-<div data-ng-controller="arRecapCtrl">
+<div data-ng-controller="arExpandCollapseCtrl">
     <div class="ar-summary ar-failed" data-ng-if="pb.errorMessage">
         {{ pb.errorMessage }}
     </div>
@@ -28,6 +28,18 @@
   </div>
   <div ng-show="expandState === 'expanded'" class="ar-nested-level">
     <div data-ng-if="isSkipped(play)" class="ar-skipping">Skpped play</div>
+    <div class="ar-task-container" data-ng-if="!isSkipped(play)" data-ng-controller="arExpandCollapseCtrl">
+        <div class="ar-summary">
+            <span title="Click to show/hide hosts" class="handle handle_{{ expandState }}" ng-click="toggle()"></span>
+            <span class="ar-name">GATHERING FACTS</span>
+        </div>
+        <ul ng-show="expandState === 'expanded'">
+            <li class="ar-{{ host.status }}" data-ng-repeat="host in filteredHosts = (play.facts | filter:hostSearch)">
+                <span>{{ host.status }}: [{{ host.hostName }}] {{ host.result }}</span>
+             </li>
+             <li data-ng-if="filteredHosts.length < 1">No matching hosts</li>
+        </ul>
+    </div>
     <div class="ar-task-container" data-ng-if="!isSkipped(play)" data-ng-repeat="task in filteredTasks = (play.tasks | filter:taskSearch)" data-ng-controller="arTaskCtrl">
         <div class="ar-summary">
             <span title="Click to show/hide hosts" class="handle handle_{{ expandState }}" ng-click="toggle()"></span>

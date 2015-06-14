@@ -34,7 +34,7 @@
         </span>
     </div>
     <div class="ar-all-recap">Total Recap: ok={{ allRecap.ok }}, changed={{ allRecap.changed }}, unreachable={{ allRecap.unreachable }}, failed={{ allRecap.failed }}</div>
-    <div data-ng-repeat="pb in playbooks" class="ar-step-container" data-ng-controller="arRunnerStepCtrl">
+    <div data-ng-repeat="pb in playbooks" class="ar-step-container" data-ng-controller="arExpandCollapseCtrl">
         <div class="ar-summary">
             <span title="Click to show/hide plays" class="handle handle_{{ expandState }}" ng-click="toggle()">&nbsp;</span>
             <span class="ar-name">{{ pb.buildMeta.tcStepName }}</span>
