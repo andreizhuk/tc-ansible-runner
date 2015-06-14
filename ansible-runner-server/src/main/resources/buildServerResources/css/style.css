@@ -48,6 +48,12 @@
 	display: inline-block;
 }
 
+.ar-task-container ul {
+	list-style-type: none;
+	margin: 2px 0 2px 25px;
+	padding: 0;
+}
+
 .ar-ok {
 	color: green;
 }
