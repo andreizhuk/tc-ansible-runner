@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import jetbrains.buildServer.agent.AgentLifeCycleAdapter;
@@ -66,6 +68,12 @@ public class AnsibleReportArtifatcsProvider extends AgentLifeCycleAdapter {
                     LOG.debug(f.getAbsolutePath());
                 }
             }
+            Arrays.sort(rawFiles, new Comparator<File>() {
+                @Override
+                public int compare(File f1, File f2) {
+                    return Long.valueOf(f1.lastModified() - f2.lastModified()).intValue();
+                }
+            });
             for (File f: rawFiles) {
                 Playbook p = getPlaybook(f);
                 if (p == null) {
