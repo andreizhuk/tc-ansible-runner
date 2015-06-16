@@ -41,6 +41,9 @@ The plugin generates hidden artifacts in *.teamcity/ansible-run* directory. Plea
 * host detailed output is displayed in a simple JS alert
 * exact failure reason on build results 'Overview' tab
 * task duration statistics
+* --syntax-check output is not recognized
+* --list-tasks output is not recognized
+* error out is ignored, matters only if using custom executables (e.g. wrapper scripts)
 
 ## Implementation overview
 The plugin consists of several components:
