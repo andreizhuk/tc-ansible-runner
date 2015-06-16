@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ee.elinyo.teamcity.plugins</groupId>
   <artifactId>ansible-runner</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.0.1</version>
   <packaging>pom</packaging>
   <properties>
       <teamcity-version>9.0.3</teamcity-version>
@@ -51,7 +51,7 @@
 	<connection>scm:git:git@github.com:andreizhuk/tc-ansible-runner.git</connection>	
 	<developerConnection>scm:git:git@github.com:andreizhuk/tc-ansible-runner.git</developerConnection>
 	<url>https://github.com/andreizhuk/tc-ansible-runner</url>
-    <tag>HEAD</tag>
+    <tag>v1.0.1</tag>
   </scm>
   <modules>
     <module>ansible-log-processor</module>

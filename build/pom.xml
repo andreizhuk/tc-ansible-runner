@@ -4,7 +4,7 @@
   <parent>
     <artifactId>ansible-runner</artifactId>
     <groupId>ee.elinyo.teamcity.plugins</groupId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.0.1</version>
   </parent>
   <artifactId>build</artifactId>
   <packaging>pom</packaging>
@@ -18,17 +18,17 @@
       <dependency>
            <groupId>ee.elinyo.teamcity.plugins</groupId>
            <artifactId>ansible-runner-agent</artifactId>
-           <version>1.1-SNAPSHOT</version>
+           <version>1.0.1</version>
       </dependency>
       <dependency>
            <groupId>ee.elinyo.teamcity.plugins</groupId>
            <artifactId>ansible-runner-common</artifactId>
-           <version>1.1-SNAPSHOT</version>
+           <version>1.0.1</version>
       </dependency>
       <dependency>
            <groupId>ee.elinyo.teamcity.plugins</groupId>
            <artifactId>ansible-runner-server</artifactId>
-           <version>1.1-SNAPSHOT</version>
+           <version>1.0.1</version>
       </dependency>
   </dependencies>
   <build>

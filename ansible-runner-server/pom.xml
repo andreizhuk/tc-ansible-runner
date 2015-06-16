@@ -4,7 +4,7 @@
   <parent>
     <artifactId>ansible-runner</artifactId>
     <groupId>ee.elinyo.teamcity.plugins</groupId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.0.1</version>
   </parent>
   <artifactId>ansible-runner-server</artifactId>
   <packaging>jar</packaging>
@@ -13,7 +13,7 @@
     <dependency>
       <groupId>ee.elinyo.teamcity.plugins</groupId>
       <artifactId>ansible-runner-common</artifactId>
-      <version>1.1-SNAPSHOT</version>
+      <version>1.0.1</version>
       <scope>compile</scope>
     </dependency>
 
