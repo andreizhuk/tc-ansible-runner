@@ -1,7 +1,9 @@
 package ee.elinyo.teamcity.plugins.ansible.agent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import jetbrains.buildServer.RunBuildException;
 import jetbrains.buildServer.agent.artifacts.ArtifactsWatcher;
@@ -55,9 +57,15 @@ public class AnsibleRunService extends BuildServiceAdapter {
         if (!StringUtil.isEmptyOrSpaces(config.getOptions())) {
             args.append(" ").append(config.getOptions());
         }
-        return new SimpleProgramCommandLine(getEnvironmentVariables(),
+        return new SimpleProgramCommandLine(getProvidedEnvironmetVariables(),
                 workingDir,
                config.getExecutable(), CommandLineArgumentsUtil.extractArguments(args.toString()));
+    }
+    
+    private Map<String, String> getProvidedEnvironmetVariables() {
+        Map<String, String> vars = new HashMap<String, String>(getEnvironmentVariables());
+        vars.put("ANSIBLE_NOCOLOR", "1");
+        return vars;
     }
 
     private ProgramCommandLine makeCustomScriptCommand(AnsibleRunConfig config) throws RunBuildException {
