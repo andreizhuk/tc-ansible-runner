@@ -9,6 +9,7 @@ import jetbrains.buildServer.agent.runner.BuildServiceAdapter;
 import jetbrains.buildServer.agent.runner.ProcessListener;
 import jetbrains.buildServer.agent.runner.ProgramCommandLine;
 import jetbrains.buildServer.agent.runner.SimpleProgramCommandLine;
+import jetbrains.buildServer.runner.CommandLineArgumentsUtil;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -43,22 +44,20 @@ public class AnsibleRunService extends BuildServiceAdapter {
     private ProgramCommandLine makeExecutableCommand(AnsibleRunConfig config)
             throws RunBuildException {
         String workingDir = getWorkingDirectory().getPath();
-        List<String> args = new ArrayList<String>();
+        StringBuilder args = new StringBuilder("");
         if (!StringUtil.isEmptyOrSpaces(config.getInventory())) {
-            args.add("-i");
-            args.add(config.getInventory());
+            args.append("-i ").append(config.getInventory());
         }
         if (StringUtil.isEmptyOrSpaces(config.getPlaybook())) {
             throw new RunBuildException("Ansible playbook should be specified");
         }
-        args.add(config.getPlaybook());
+        args.append(" ").append(config.getPlaybook());
         if (!StringUtil.isEmptyOrSpaces(config.getOptions())) {
-            String opts = config.getOptions().replace("\n", "").replace("\r", "");
-            args.add(opts);
+            args.append(" ").append(config.getOptions());
         }
         return new SimpleProgramCommandLine(getEnvironmentVariables(),
                 workingDir,
-               config.getExecutable(), args);
+               config.getExecutable(), CommandLineArgumentsUtil.extractArguments(args.toString()));
     }
 
     private ProgramCommandLine makeCustomScriptCommand(AnsibleRunConfig config) throws RunBuildException {
