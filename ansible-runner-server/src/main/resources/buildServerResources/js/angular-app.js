@@ -101,8 +101,8 @@ ARReportApp.controller('arRootCtrl', ['$scope','$http', 'PlaybookWrapperService'
       .success(function(data, status, headers, config) {
     	  dataWrapper.wrap(data);
     	  $scope.allRecap = data.allRecap;
-    	  if (data.allRecap.failed > 0) {
-    		  $scope.search.status = 'failed';
+    	  if (data.allRecap.failed > 0 || data.allRecap.unreachable > 0) {
+    		  $scope.search.showFacts = true;
     	  }
           $scope.playbooks = data.playbooks;
           $scope.loaded = true;
