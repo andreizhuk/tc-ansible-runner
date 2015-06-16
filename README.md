@@ -10,6 +10,7 @@ Developed and tested with TeamCity 9.0.4
 
 ### Installation
 Follow the standard TeamCity plugin installation procedure:
+
 1. Download the latest release of ansible-runner-dist.zip from [GitHub](https://github.com/andreizhuk/tc-ansible-runner/releases)
 1. Shutdown the TeamCity server.
 1. drop the ansible-runner-dist.zip into *<TeamCity Data Directory>/plugins* directory
