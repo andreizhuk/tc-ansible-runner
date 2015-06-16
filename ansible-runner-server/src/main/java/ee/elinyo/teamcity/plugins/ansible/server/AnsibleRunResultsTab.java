@@ -21,9 +21,9 @@ public class AnsibleRunResultsTab extends ViewLogTab {
         setTabTitle(getTitle());
         setPluginName(getClass().getSimpleName());
         setIncludeUrl(getJspPage(descriptor));
-//        addCssFile(descriptor.getPluginResourcesPath("css/style.css"));
-//        addJsFile(descriptor.getPluginResourcesPath("js/angular.min.js"));
-//        addJsFile(descriptor.getPluginResourcesPath("js/angular-app.js"));
+        addCssFile(descriptor.getPluginResourcesPath("css/style.css"));
+        addJsFile(descriptor.getPluginResourcesPath("js/angular.min.js"));
+        addJsFile(descriptor.getPluginResourcesPath("js/angular-app.js"));
     }
 
     private String getTitle() {
