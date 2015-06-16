@@ -37,7 +37,7 @@
             <li class="ar-{{ host.status }}" data-ng-repeat="host in filteredHosts = (play.facts | filter:hostSearch)">
                 <span>{{ host.status }}: [{{ host.hostName }}] {{ host.result }}</span>
              </li>
-             <li data-ng-if="filteredHosts.length < 1">No matching hosts</li>
+             <li data-ng-if="filteredHosts.length < 1" class="ar-no-match">No hosts matching your filter</li>
         </ul>
     </div>
     <div class="ar-task-container" data-ng-if="!isSkipped(play)" data-ng-repeat="task in filteredTasks = (play.tasks | filter:taskSearch)" data-ng-controller="arTaskCtrl">
@@ -55,9 +55,9 @@
                 <span>{{ host.status }}: [{{ host.hostName }}] {{ host.result }}</span>
                 <a href="" data-ng-click="showHostDetails(host)" data-ng-if="host.details.length > 0" title="Click to see more">...</a>
              </li>
-             <li data-ng-if="filteredHosts.length < 1">No matching hosts</li>
+             <li data-ng-if="filteredHosts.length < 1" class="ar-no-match">No hosts matching your filter</li>
         </ul>
      </div>
-    <div data-ng-if="filteredTasks.length < 1 && play.tasks.length > 0">No matching tasks</div>
+    <div data-ng-if="filteredTasks.length < 1 && play.tasks.length > 0" class="ar-no-match">No tasks matching your filter</div>
   </div>
 </div>

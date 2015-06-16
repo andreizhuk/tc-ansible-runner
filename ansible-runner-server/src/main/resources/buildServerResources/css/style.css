@@ -58,6 +58,12 @@
 	padding: 0;
 }
 
+.ar-no-match {
+	color: gray;
+	font-style: italic;
+	font-size: 95%;
+}
+
 .ar-ok {
 	color: green;
 }
