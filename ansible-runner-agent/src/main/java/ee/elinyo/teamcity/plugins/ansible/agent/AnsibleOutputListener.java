@@ -58,6 +58,7 @@ public class AnsibleOutputListener implements ProcessListener {
 
     @Override
     public void onErrorOutput(String text) {
+        buildRunnerContext.getBuild().getBuildLogger().error(text);
         onStandardOutput(text);
     }
 
