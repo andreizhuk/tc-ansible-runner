@@ -1,6 +1,9 @@
 package ee.elinyo.teamcity.plugins.ansible.agent;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +15,7 @@ import jetbrains.buildServer.agent.runner.ProcessListener;
 import jetbrains.buildServer.agent.runner.ProgramCommandLine;
 import jetbrains.buildServer.agent.runner.SimpleProgramCommandLine;
 import jetbrains.buildServer.runner.CommandLineArgumentsUtil;
+import jetbrains.buildServer.util.FileUtil;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -69,9 +73,34 @@ public class AnsibleRunService extends BuildServiceAdapter {
     }
 
     private ProgramCommandLine makeCustomScriptCommand(AnsibleRunConfig config) throws RunBuildException {
-       // String workingDir = getWorkingDirectory().getPath();
-        LOG.warn("Not Implemented");
-        throw new RunBuildException("Ansible customs script is not imlemented");
+        String workingDir = getWorkingDirectory().getPath();
+        List<String> args = Collections.emptyList();
+        String customScript = getCustomScriptExecutable(config);
+        return new SimpleProgramCommandLine(getProvidedEnvironmetVariables(),
+                workingDir,
+                customScript, args);
+    }
+
+    private String getCustomScriptExecutable(AnsibleRunConfig config) throws RunBuildException {
+        String content = null;
+        File scriptFile = null;
+        if (config.getSourceCode() != null) {
+            content = config.getSourceCode().replace("\r\n", "\n").replace("\r", "\n");
+        }
+        if (StringUtil.isEmptyOrSpaces(content)) {
+            throw new RunBuildException("Custom script source code cannot be empty");
+        }
+        try {
+            scriptFile = File.createTempFile("ansible_custom_exe", null, getBuildTempDirectory());
+            FileUtil.writeFileAndReportErrors(scriptFile, content);
+        } catch (IOException e) {
+            throw new RunBuildException("Failed to create a tmp file for custom ansible execution script");
+        }
+        boolean executable = scriptFile.setExecutable(true, true);
+        if (!executable) {
+            throw new RunBuildException("Failed to set executable permissions to " + scriptFile.getAbsolutePath());
+        }
+        return scriptFile.getAbsolutePath();
     }
 
     @NotNull

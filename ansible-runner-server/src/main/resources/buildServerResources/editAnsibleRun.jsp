@@ -8,7 +8,6 @@
 
 <forms:workingDirectory/>
 
-<%-- Custom script selector 
 <tr>
   <th><label for="${bean.commandTypeKey}">Run:</label></th>
   <td>
@@ -19,9 +18,6 @@
     <span class="smallNote">You can use custom when ansible is executed via wrapper scripts</span>
   </td>
 </tr>
---%>
-
-<props:hiddenProperty  name="${bean.commandTypeKey}" id="ar_command_type_option" value="${bean.executableCommandValue}"/>
 
 <tr id="ar_executable">
   <th><label for="${bean.executableKey}">Command:</label></th>
