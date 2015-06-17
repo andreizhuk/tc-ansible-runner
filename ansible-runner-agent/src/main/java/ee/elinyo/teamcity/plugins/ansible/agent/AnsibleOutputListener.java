@@ -58,7 +58,7 @@ public class AnsibleOutputListener implements ProcessListener {
 
     @Override
     public void onErrorOutput(String text) {
-        // TODO Auto-generated method stub
+        onStandardOutput(text);
     }
 
     @Override
