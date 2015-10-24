@@ -28,7 +28,7 @@ Follow the standard TeamCity plugin installation procedure:
 Open "Ansible Log" tab for a selected build.
 The report resembles ansible native colored output and adds filtering possibilities
 
-[Sceenshot](README/AnsibleLog-screen.png)
+[Screenshot](README/AnsibleLog-screen.png)
 
 ### Troubleshooting
 The plugin generates hidden artifacts in *.teamcity/ansible-run* directory. Please consider attaching its content along with build log excerpts when reporting an issue on github
