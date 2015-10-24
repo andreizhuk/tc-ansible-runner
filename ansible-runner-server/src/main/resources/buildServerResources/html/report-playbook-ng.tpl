@@ -27,7 +27,7 @@
       <span class="ar-summary-col" ng-class="{'ar-ok': play.hostStatus.ok > 0}">ok={{ play.hostStatus.ok || 0 }}</span>
   </div>
   <div ng-show="expandState === 'expanded'" class="ar-nested-level">
-    <div data-ng-if="isSkipped(play)" class="ar-skipping">Skpped play</div>
+    <div data-ng-if="isSkipped(play)" class="ar-skipping">Skipped play</div>
     <div class="ar-task-container" data-ng-if="!isSkipped(play) && search.showFacts" data-ng-controller="arExpandCollapseCtrl">
         <div class="ar-summary">
             <span title="Click to show/hide facts" class="handle handle_{{ expandState }}" ng-click="toggle()"></span>
